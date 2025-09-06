@@ -13,4 +13,14 @@ class LogBlockTest {
     void ensureInfoWorks() {
         LogBlock.withLogger(log).info("This is my first message!");
     }
+
+    @Test
+    void ensureInfoWorksWithTextBlock() {
+        LogBlock.withLogger(log).info("""
+                HELLO THIS IS A TEXTBLOCK TEST
+                      even with formatting!
+                
+                This is insane
+                """);
+    }
 }

@@ -6,29 +6,28 @@ plugins {
     id("maven-publish")
 }
 
-allprojects {
-    apply(plugin = "java")
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        testImplementation("org.slf4j:slf4j-api:2.0.0")
-        testImplementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3")
-        testImplementation(platform("org.junit:junit-bom:5.10.0"))
-        testImplementation("org.junit.jupiter:junit-jupiter")
-        testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-        testImplementation("org.assertj:assertj-core:3.27.2")
-    }
-}
-
 group = "eu.luktronic"
-version = "0.1-1.0"
+version = "0.1-2.0"
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(8);
+        languageVersion = JavaLanguageVersion.of(24);
     }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compileOnly("org.slf4j:slf4j-api:2.0.0")
+
+    testImplementation("org.slf4j:slf4j-api:2.0.0")
+    testImplementation("org.apache.logging.log4j:log4j-slf4j2-impl:2.24.3")
+    testImplementation(platform("org.junit:junit-bom:5.10.0"))
+    testImplementation("org.junit.jupiter:junit-jupiter")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    testImplementation("org.assertj:assertj-core:3.27.2")
 }
 
 publishing {
@@ -42,9 +41,8 @@ publishing {
     }
 }
 
-dependencies {
-    compileOnly("org.slf4j:slf4j-api:2.0.0")
-
+tasks.compileJava {
+    options.release = 8
 }
 
 tasks.test {

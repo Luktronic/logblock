@@ -31,7 +31,7 @@ LogBlock also allows you to customize the logging blocks to your liking, providi
 ## Building
 
 While the library itself can be used with Java 8+, LogBlock uses [Gradle 9.0.0](https://gradle.org/releases/#9.0.0) 
-as its build tool (using Gradle wrapper) and therefore requires Java 17+ for building.
+as its build tool (using Gradle wrapper) and requires Java 24 for building.
 
 ## Planned features
 

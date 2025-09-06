@@ -1,7 +1,6 @@
 package eu.luktronic.logblock;
 
 import lombok.val;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.*;
 
-class BorderBuilderTest {
+class BorderSectionBuilderTest {
 
     @Nested
     @DisplayName("Constructor")
@@ -25,7 +24,7 @@ class BorderBuilderTest {
             @DisplayName("should throw NullPointerException")
             void shouldThrowNullPointerException() {
                 assertThatNullPointerException()
-                        .isThrownBy(() -> new BorderBuilder(null));
+                        .isThrownBy(() -> new BorderSectionBuilder(null));
             }
         }
     }
@@ -34,12 +33,12 @@ class BorderBuilderTest {
     @DisplayName("build()")
     class Build {
         final BorderFormat format = new BorderFormat("=", 30, 4);
-        final BorderBuilder borderBuilder = new BorderBuilder(format);
+        final BorderSectionBuilder borderSectionBuilder = new BorderSectionBuilder(format);
 
         @Nested
         @DisplayName("should successfully return section")
         class ShouldReturnSection {
-            LogBlockSection section = borderBuilder.build();
+            LogBlockSection section = borderSectionBuilder.build();
 
             @Test
             @DisplayName("with correct thickness")

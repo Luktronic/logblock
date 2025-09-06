@@ -9,11 +9,11 @@ import java.util.Objects;
  * Class that is responsible for building the {@link LogBlockSection} of the border using the specified
  * {@link BorderFormat}.
  */
-class BorderBuilder implements SectionBuilder {
+class BorderSectionBuilder implements SectionBuilder {
 
     private final BorderFormat format;
 
-    BorderBuilder(BorderFormat format) {
+    BorderSectionBuilder(BorderFormat format) {
         Objects.requireNonNull(format, "Received null format in BorderBuilder constructor!");
         this.format = format;
     }

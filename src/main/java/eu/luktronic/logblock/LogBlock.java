@@ -3,11 +3,8 @@ package eu.luktronic.logblock;
 import lombok.val;
 import org.slf4j.Logger;
 
-import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.BiConsumer;
-import java.util.stream.Collectors;
 
 public class LogBlock {
 
@@ -59,41 +56,12 @@ public class LogBlock {
     }
 
     private void executeLogging(BiConsumer<String, Object[]> logConsumer, String msg, Object... params) {
-        if(msg == null)
-            msg = "null";
-        val lines = msg.split("\n");
-        val prefix = baseFormat.getLinePrefix();
-        val padding = buildPaddingLeft(baseFormat.getPaddingLeft());
-
-        val borderLines = getBorderLines(new BorderBuilder(baseFormat.getBorderFormat()).build());
-        val borderMsgs = borderLines.stream()
-                .map(line -> prefix + line)
-                .collect(Collectors.toList());
-
-        val contentMsgs = Arrays.stream(lines)
-                .map(line -> prefix + padding + line)
-                .collect(Collectors.toList());
-
-        borderMsgs.forEach(borderMsg -> logLine(logConsumer, borderMsg));
-        contentMsgs.forEach(contentMsg -> logLine(logConsumer, contentMsg));
-        borderMsgs.forEach(borderMsg -> logLine(logConsumer, borderMsg));
+        val lines = new BuildBlock(baseFormat, msg, params).andGetLines();
+        lines.forEach(line -> logLine(logConsumer, line));
     }
 
-    private void logLine(BiConsumer<String, Object[]> logConsumer, String msg, Object... params) {
-        logConsumer.accept(msg, params);
+    private void logLine(BiConsumer<String, Object[]> logConsumer, LogBlockLine line) {
+        logConsumer.accept(line.getLine(), line.getParams().toArray());
     }
 
-    private List<String> getBorderLines(LogBlockSection border) {
-        return border.getLines().stream()
-                .map(LogBlockLine::getLine)
-                .collect(Collectors.toList());
-    }
-
-    private String buildPaddingLeft(int paddingLeft) {
-        val paddingBuilder = new StringBuilder(paddingLeft);
-        for(int i = 0; i < paddingLeft; i++) {
-            paddingBuilder.append(" ");
-        }
-        return paddingBuilder.toString();
-    }
 }

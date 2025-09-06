@@ -1,5 +1,8 @@
 # LogBlock
 
+> [!NOTE]
+> This project is currently under active development and is therefore not usable yet.
+
 LogBlock is an [SLF4J](https://github.com/qos-ch/slf4j)-based utility library that provides an easy way to log 
 beautiful information blocks like this one:
 
@@ -29,3 +32,18 @@ LogBlock also allows you to customize the logging blocks to your liking, providi
 
 While the library itself can be used with Java 8+, LogBlock uses [Gradle 9.0.0](https://gradle.org/releases/#9.0.0) 
 as its build tool (using Gradle wrapper) and therefore requires Java 17+ for building.
+
+## Planned features
+
+- Block borders
+- Block line prefix
+- Top padding
+- Bottom padding
+- Left padding
+
+### Currently in consideration
+
+- Headers
+- Footers
+- Colored block border
+- Colored block message

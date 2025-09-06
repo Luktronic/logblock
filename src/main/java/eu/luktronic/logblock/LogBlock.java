@@ -10,6 +10,7 @@ public class LogBlock {
 
     private final Logger log;
     private final LogBlockFormat baseFormat;
+    private LogBlockFormat tempFormat;
 
     /**
      * Creates a new instance of {@link LogBlock} with the passed {@link Logger} and the default {@link LogBlockFormat} as the base format.
@@ -39,6 +40,7 @@ public class LogBlock {
         Objects.requireNonNull(blockFormat, "Received null blockFormat in LogBlock constructor!");
         this.log = logger;
         this.baseFormat = new LogBlockFormat();
+        this.tempFormat = new LogBlockFormat(baseFormat);
     }
 
     public void trace(String msg, Object... params) {
@@ -61,6 +63,31 @@ public class LogBlock {
         executeLogging(log::error, msg, params);
     }
 
+    public LogBlock withBorderDelimiter(String delimiter) {
+        tempFormat.getBorderFormat().setDelimiter(delimiter);
+        return this;
+    }
+
+    public LogBlock withBorderDelimiterCount(int delimiterCount) {
+        tempFormat.getBorderFormat().setDelimiterCount(delimiterCount);
+        return this;
+    }
+
+    public LogBlock withBorderThickness(int thickness) {
+        tempFormat.getBorderFormat().setThickness(thickness);
+        return this;
+    }
+
+    public LogBlock withPaddingLeft(int paddingLeft) {
+        tempFormat.setPaddingLeft(paddingLeft);
+        return this;
+    }
+
+    public LogBlock withLinePrefix(String linePrefix) {
+        tempFormat.setLinePrefix(linePrefix);
+        return this;
+    }
+
     /**
      * Creates a new {@link LogBlock} instance providing a more fluent-API-like style.
      * @param logger The SLF4J {@link Logger} that should be used for logging.
@@ -72,8 +99,9 @@ public class LogBlock {
     }
 
     private void executeLogging(BiConsumer<String, Object[]> logConsumer, String msg, Object... params) {
-        val lines = new BuildBlock(baseFormat, msg, params).andGetLines();
+        val lines = new BuildBlock(tempFormat, msg, params).andGetLines();
         lines.forEach(line -> logLine(logConsumer, line));
+        tempFormat = new LogBlockFormat(baseFormat);
     }
 
     private void logLine(BiConsumer<String, Object[]> logConsumer, LogBlockLine line) {

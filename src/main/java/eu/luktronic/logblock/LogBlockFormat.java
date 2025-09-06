@@ -43,4 +43,14 @@ public class LogBlockFormat {
         this.borderFormat = new BorderFormat(other.borderFormat);
         this.linePrefix = other.linePrefix;
     }
+
+    public void setLinePrefix(String linePrefix) {
+        //TODO: add validation
+        this.linePrefix = linePrefix;
+    }
+
+    public void setPaddingLeft(int paddingLeft) {
+        //TODO: add validation
+        this.paddingLeft = paddingLeft;
+    }
 }

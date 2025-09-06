@@ -41,7 +41,7 @@ class StringUtils {
      * </p>
      * @return The amount of anchors ({@code {}}) that are in the String.
      */
-    public int countAnchors(String regex) {
+    public int countAnchors() {
         return countOccurrencesOf("(?<!\\\\)\\{}");
     }
 }

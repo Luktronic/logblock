@@ -1,13 +1,11 @@
 package eu.luktronic.logblock;
 
 import lombok.Getter;
-import lombok.val;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 /**
  * Represents a single line inside a log block.
@@ -39,24 +37,5 @@ class LogBlockLine {
 
     public List<Object> getParams() {
         return Collections.unmodifiableList(params);
-    }
-
-    /**
-     * Counts how many times {@code {}} occurs inside the passed {@code str} <b>without</b> it being escaped with {@code \}.
-     *
-     * <p>
-     *     For example, this counts as 1 occurrence:<br>
-     *     {@code "Hello! \{} My {name} is {{}}"}
-     * </p>
-     * @param str The String to count the anchors in.
-     * @return The amount of anchors ({@code {}}) that are in the passed String.
-     */
-    private int countAnchors(String str) {
-        val matcher = Pattern.compile("(?<!\\\\)\\{}").matcher(str);
-        int count = 0;
-        while(matcher.find()) {
-            count++;
-        }
-        return count;
     }
 }

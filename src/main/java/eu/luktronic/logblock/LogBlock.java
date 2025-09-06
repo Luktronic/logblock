@@ -41,8 +41,24 @@ public class LogBlock {
         this.baseFormat = new LogBlockFormat();
     }
 
+    public void trace(String msg, Object... params) {
+        executeLogging(log::trace, msg, params);
+    }
+
+    public void debug(String msg, Object... params) {
+        executeLogging(log::debug, msg, params);
+    }
+
     public void info(String msg, Object... params) {
         executeLogging(log::info, msg, params);
+    }
+
+    public void warn(String msg, Object... params) {
+        executeLogging(log::warn, msg, params);
+    }
+
+    public void error(String msg, Object... params) {
+        executeLogging(log::error, msg, params);
     }
 
     /**

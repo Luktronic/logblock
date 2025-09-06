@@ -85,7 +85,7 @@ class MsgSectionBuilder implements SectionBuilder{
         val chosenParams = new ArrayList<>(chosenParamsCount);
 
         for(int i = 0; i < chosenParamsCount; i++) {
-            chosenParams.add(availableParams.remove(i));
+            chosenParams.add(availableParams.remove(0));
         }
 
         return new LogBlockLine(line, chosenParams);

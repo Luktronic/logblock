@@ -11,16 +11,16 @@ class LogBlockTest {
 
     @Test
     void ensureInfoWorks() {
-        LogBlock.withLogger(log).info("This is my first message!");
+        LogBlock.withLogger(log).info("{} {} {}\n{}", 1, 2, 3, 4);
     }
 
     @Test
     void ensureInfoWorksWithTextBlock() {
-        LogBlock.withLogger(log).info("""
-                HELLO THIS IS A TEXTBLOCK TEST
+        LogBlock.withLogger(log).error("""
+                HELLO THIS IS A TEXTBLOCK TEST {}
                       even with formatting!
                 
-                This is insane
-                """);
+                This is insane {}
+                """, 1, 2, 3, 4);
     }
 }

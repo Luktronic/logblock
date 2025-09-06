@@ -38,4 +38,9 @@ class LogBlockLine {
     public List<Object> getParams() {
         return Collections.unmodifiableList(params);
     }
+
+    @Override
+    public String toString() {
+        return line;
+    }
 }

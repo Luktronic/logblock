@@ -53,11 +53,11 @@ public class LogBlock {
             paddingBuilder.append(" ");
         }
         val padding = paddingBuilder.toString();
-        val border = baseFormat.getBorderFormat().buildBorder();
-        border.forEach(line -> log.info("{}{}", prefix, line));
+        val border = new BorderBuilder(baseFormat.getBorderFormat()).build();
+        border.getLines().forEach(line -> log.info("{}{}", prefix, line));
         Arrays.stream(lines)
                 .forEach(line -> log.info("{}{}{}", prefix, padding, line));
-        border.forEach(line -> log.info("{}{}", prefix, line));
+        border.getLines().forEach(line -> log.info("{}{}", prefix, line));
     }
 
     /**

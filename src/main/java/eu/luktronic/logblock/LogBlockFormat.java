@@ -1,5 +1,7 @@
 package eu.luktronic.logblock;
 
+import lombok.Getter;
+
 import java.util.Objects;
 
 /**
@@ -15,10 +17,12 @@ import java.util.Objects;
  * ...and many more!
  * </p>
  */
+@Getter
 public class LogBlockFormat {
 
     private BorderFormat borderFormat;
     private String linePrefix;
+    private int paddingLeft;
 
     /**
      * Creates an instance with all default formats.
@@ -27,6 +31,7 @@ public class LogBlockFormat {
         this.borderFormat = new BorderFormat();
         //TODO: change value to be read from config
         this.linePrefix = "|";
+        this.paddingLeft = 1;
     }
 
     /**

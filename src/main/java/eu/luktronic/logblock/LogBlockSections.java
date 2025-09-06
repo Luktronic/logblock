@@ -3,10 +3,7 @@ package eu.luktronic.logblock;
 import lombok.Getter;
 import lombok.val;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -15,12 +12,14 @@ import java.util.stream.Collectors;
 @Getter
 class LogBlockSections {
 
+    private final LogBlockSection prefixSection;
     private final LogBlockSection borderSection;
     private final LogBlockSection paddingLeftSection;
     private final LogBlockSection msgSection;
 
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
+        this.prefixSection = new LogBlockSection(Collections.singletonList(new LogBlockLine(format.getLinePrefix())));
         this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
         this.paddingLeftSection = new PaddingLeftSectionBuilder(format).build();
         this.msgSection = new MsgSectionBuilder(msg, params).build();

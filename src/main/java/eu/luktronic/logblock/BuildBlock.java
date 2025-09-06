@@ -5,6 +5,7 @@ import lombok.val;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * Builds a block and renders it
@@ -24,13 +25,21 @@ class BuildBlock {
      */
     public List<LogBlockLine> andGetLines() {
         val borderLines = sections.getBorderSection().getLines();
-        val msgLines = sections.getMsgSection().getLines();
+        val paddingLine = sections.getPaddingLeftSection().getLines().get(0);
+        val msgLines = applyPadding(paddingLine, sections.getMsgSection().getLines());
 
         val lineCount = 2 * borderLines.size() + msgLines.size();
         val lines = new ArrayList<LogBlockLine>(lineCount);
         lines.addAll(borderLines);
         lines.addAll(msgLines);
         lines.addAll(borderLines);
+
         return lines;
+    }
+
+    private List<LogBlockLine> applyPadding(LogBlockLine padding, List<LogBlockLine> lines) {
+        return lines.stream()
+                .map(line -> line.prepend(padding))
+                .collect(Collectors.toList());
     }
 }

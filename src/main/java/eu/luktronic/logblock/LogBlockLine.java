@@ -1,11 +1,10 @@
 package eu.luktronic.logblock;
 
 import lombok.Getter;
+import lombok.val;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Represents a single line inside a log block.
@@ -20,7 +19,7 @@ class LogBlockLine {
         Objects.requireNonNull(params, "Received null params in LogBlockLine constructor!");
 
         this.line = line;
-        this.params = params;
+        this.params = new ArrayList<>(params);
     }
 
     /**
@@ -37,6 +36,16 @@ class LogBlockLine {
 
     public List<Object> getParams() {
         return Collections.unmodifiableList(params);
+    }
+
+    /// Returns a new [LogBlockLine] that is prepended by the passed `lines`.
+    /// @return New [LogBlockLine] prepended by the passed `lines`.
+    public LogBlockLine prepend(LogBlockLine... lines) {
+        val prefix = Arrays.stream(lines)
+                .map(LogBlockLine::getLine)
+                .collect(Collectors.joining());
+
+        return new LogBlockLine(prefix + line, params);
     }
 
     @Override

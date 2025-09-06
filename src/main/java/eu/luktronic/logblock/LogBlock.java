@@ -6,7 +6,8 @@ import org.slf4j.Logger;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
+import java.util.function.BiConsumer;
+import java.util.stream.Collectors;
 
 public class LogBlock {
 
@@ -43,21 +44,8 @@ public class LogBlock {
         this.baseFormat = new LogBlockFormat();
     }
 
-    public void info(String msg) {
-        if(msg == null)
-            msg = "null";
-        val lines = msg.split("\n");
-        val prefix = baseFormat.getLinePrefix();
-        val paddingBuilder = new StringBuilder(baseFormat.getPaddingLeft());
-        for(int i = 0; i < baseFormat.getPaddingLeft(); i++) {
-            paddingBuilder.append(" ");
-        }
-        val padding = paddingBuilder.toString();
-        val border = new BorderBuilder(baseFormat.getBorderFormat()).build();
-        border.getLines().forEach(line -> log.info("{}{}", prefix, line));
-        Arrays.stream(lines)
-                .forEach(line -> log.info("{}{}{}", prefix, padding, line));
-        border.getLines().forEach(line -> log.info("{}{}", prefix, line));
+    public void info(String msg, Object... params) {
+        executeLogging(log::info, msg, params);
     }
 
     /**
@@ -70,5 +58,42 @@ public class LogBlock {
         return new LogBlock(logger);
     }
 
+    private void executeLogging(BiConsumer<String, Object[]> logConsumer, String msg, Object... params) {
+        if(msg == null)
+            msg = "null";
+        val lines = msg.split("\n");
+        val prefix = baseFormat.getLinePrefix();
+        val padding = buildPaddingLeft(baseFormat.getPaddingLeft());
 
+        val borderLines = getBorderLines(new BorderBuilder(baseFormat.getBorderFormat()).build());
+        val borderMsgs = borderLines.stream()
+                .map(line -> prefix + line)
+                .collect(Collectors.toList());
+
+        val contentMsgs = Arrays.stream(lines)
+                .map(line -> prefix + padding + line)
+                .collect(Collectors.toList());
+
+        borderMsgs.forEach(borderMsg -> logLine(logConsumer, borderMsg));
+        contentMsgs.forEach(contentMsg -> logLine(logConsumer, contentMsg));
+        borderMsgs.forEach(borderMsg -> logLine(logConsumer, borderMsg));
+    }
+
+    private void logLine(BiConsumer<String, Object[]> logConsumer, String msg, Object... params) {
+        logConsumer.accept(msg, params);
+    }
+
+    private List<String> getBorderLines(LogBlockSection border) {
+        return border.getLines().stream()
+                .map(LogBlockLine::getLine)
+                .collect(Collectors.toList());
+    }
+
+    private String buildPaddingLeft(int paddingLeft) {
+        val paddingBuilder = new StringBuilder(paddingLeft);
+        for(int i = 0; i < paddingLeft; i++) {
+            paddingBuilder.append(" ");
+        }
+        return paddingBuilder.toString();
+    }
 }

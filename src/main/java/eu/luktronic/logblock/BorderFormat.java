@@ -1,7 +1,6 @@
 package eu.luktronic.logblock;
 
 import lombok.Getter;
-import lombok.Setter;
 import lombok.val;
 
 import java.util.ArrayList;
@@ -14,13 +13,13 @@ import java.util.Objects;
 @Getter
 public class BorderFormat {
 
-    private String borderString;
-    private int borderStringRepeat;
+    private String delimiter;
+    private int delimiterCount;
     private int thickness;
 
-    public BorderFormat(String borderString, int borderStringRepeat, int thickness) {
-        this.borderString = borderString;
-        this.borderStringRepeat = borderStringRepeat;
+    public BorderFormat(String delimiter, int delimiterCount, int thickness) {
+        this.delimiter = delimiter;
+        this.delimiterCount = delimiterCount;
         this.thickness = thickness;
     }
 
@@ -39,8 +38,8 @@ public class BorderFormat {
      */
     BorderFormat(BorderFormat other) {
         Objects.requireNonNull(other, "Received null format in BlockFormat constructor!");
-        this.borderString = other.borderString;
-        this.borderStringRepeat = other.borderStringRepeat;
+        this.delimiter = other.delimiter;
+        this.delimiterCount = other.delimiterCount;
         this.thickness = other.thickness;
     }
 
@@ -52,9 +51,9 @@ public class BorderFormat {
      * @return A single line of the border with this format.
      */
     public String buildBorderLine() {
-        val builder = new StringBuilder(borderStringRepeat);
-        for(int i = 0; i < borderStringRepeat; i++) {
-            builder.append(borderString);
+        val builder = new StringBuilder(delimiterCount);
+        for(int i = 0; i < delimiterCount; i++) {
+            builder.append(delimiter);
         }
         return builder.toString();
     }
@@ -71,14 +70,14 @@ public class BorderFormat {
         return allLines;
     }
 
-    public void setBorderString(String borderString) {
+    public void setDelimiter(String delimiter) {
         //TODO: add validation
-        this.borderString = borderString;
+        this.delimiter = delimiter;
     }
 
-    public void setBorderStringRepeat(int borderStringRepeat) {
+    public void setDelimiterCount(int delimiterCount) {
         //TODO: add validation
-        this.borderStringRepeat = borderStringRepeat;
+        this.delimiterCount = delimiterCount;
     }
 
     public void setThickness(int thickness) {

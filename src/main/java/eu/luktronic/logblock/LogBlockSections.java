@@ -20,8 +20,7 @@ class LogBlockSections {
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
         this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
-        //TODO: Introduce MsgSectionBuilder
-        this.msgSection = new LogBlockSection(buildMsgSection(format, msg));
+        this.msgSection = new MsgSectionBuilder(msg, params).build();
     }
 
     private List<LogBlockLine> buildMsgSection(LogBlockFormat format, String msg) {

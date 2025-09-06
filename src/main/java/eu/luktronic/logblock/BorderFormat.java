@@ -6,6 +6,7 @@ import lombok.val;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Defines the format of the <b>border</b> of a log block.
@@ -30,6 +31,17 @@ public class BorderFormat {
                 50,
                 1
         );
+    }
+
+    /**
+     * Copy constructor used for internal operations.
+     * @param other The format to copy.
+     */
+    BorderFormat(BorderFormat other) {
+        Objects.requireNonNull(other, "Received null format in BlockFormat constructor!");
+        this.borderString = other.borderString;
+        this.borderStringRepeat = other.borderStringRepeat;
+        this.thickness = other.thickness;
     }
 
     /**

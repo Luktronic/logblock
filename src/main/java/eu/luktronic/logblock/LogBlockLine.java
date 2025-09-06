@@ -1,8 +1,10 @@
 package eu.luktronic.logblock;
 
+import lombok.Getter;
 import lombok.val;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -12,6 +14,7 @@ import java.util.regex.Pattern;
  */
 class LogBlockLine {
 
+    @Getter
     private final String line;
     private final List<Object> params;
 
@@ -32,6 +35,10 @@ class LogBlockLine {
      */
     LogBlockLine(String line) {
         this(line, new ArrayList<>(0));
+    }
+
+    public List<Object> getParams() {
+        return Collections.unmodifiableList(params);
     }
 
     /**

@@ -42,6 +42,7 @@ public class LogBlockFormat {
         Objects.requireNonNull(other, "Received null format in LogBlockFormat constructor!");
         this.borderFormat = new BorderFormat(other.borderFormat);
         this.linePrefix = other.linePrefix;
+        this.paddingLeft = other.paddingLeft;
     }
 
     public void setLinePrefix(String linePrefix) {

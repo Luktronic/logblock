@@ -26,13 +26,17 @@ class BuildBlock {
     public List<LogBlockLine> andGetLines() {
         val prefixline = sections.getPrefixSection().getLines().get(0);
         val borderLines = sections.getBorderSection().getLines();
-        val paddingLine = sections.getPaddingLeftSection().getLines().get(0);
-        val msgLines = applyPadding(paddingLine, sections.getMsgSection().getLines());
+        val paddingTopLines = sections.getPaddingTopSection().getLines();
+        val paddingBottomLines = sections.getPaddingBottomSection().getLines();
+        val paddingLeftLine = sections.getPaddingLeftSection().getLines().get(0);
+        val msgLines = applyPadding(paddingLeftLine, sections.getMsgSection().getLines());
 
         val lineCount = 2 * borderLines.size() + msgLines.size();
         val lines = new ArrayList<LogBlockLine>(lineCount);
         lines.addAll(borderLines);
+        lines.addAll(paddingTopLines);
         lines.addAll(msgLines);
+        lines.addAll(paddingBottomLines);
         lines.addAll(borderLines);
 
         return lines.stream()

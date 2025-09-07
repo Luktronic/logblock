@@ -14,13 +14,17 @@ class LogBlockSections {
 
     private final LogBlockSection prefixSection;
     private final LogBlockSection borderSection;
+    private final LogBlockSection paddingTopSection;
     private final LogBlockSection paddingLeftSection;
+    private final LogBlockSection paddingBottomSection;
     private final LogBlockSection msgSection;
 
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
         this.prefixSection = new LogBlockSection(Collections.singletonList(new LogBlockLine(format.getLinePrefix())));
         this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
+        this.paddingTopSection = new HorizontalPaddingSectionBuilder(format.getPaddingTop()).build();
+        this.paddingBottomSection = new HorizontalPaddingSectionBuilder(format.getPaddingBottom()).build();
         this.paddingLeftSection = new PaddingLeftSectionBuilder(format).build();
         this.msgSection = new MsgSectionBuilder(msg, params).build();
     }

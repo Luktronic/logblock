@@ -22,7 +22,9 @@ public class LogBlockFormat {
 
     private BorderFormat borderFormat;
     private String linePrefix;
+    private int paddingTop;
     private int paddingLeft;
+    private int paddingBottom;
 
     /**
      * Creates an instance with all default formats.
@@ -31,7 +33,9 @@ public class LogBlockFormat {
         this.borderFormat = new BorderFormat();
         //TODO: change value to be read from config
         this.linePrefix = "|";
-        this.paddingLeft = 1;
+        this.paddingTop = 1;
+        this.paddingBottom = 1;
+        this.paddingLeft = 2;
     }
 
     /**
@@ -42,6 +46,8 @@ public class LogBlockFormat {
         Objects.requireNonNull(other, "Received null format in LogBlockFormat constructor!");
         this.borderFormat = new BorderFormat(other.borderFormat);
         this.linePrefix = other.linePrefix;
+        this.paddingTop = other.paddingTop;
+        this.paddingBottom = other.paddingBottom;
         this.paddingLeft = other.paddingLeft;
     }
 
@@ -53,5 +59,15 @@ public class LogBlockFormat {
     public void setPaddingLeft(int paddingLeft) {
         //TODO: add validation
         this.paddingLeft = paddingLeft;
+    }
+
+    public void setPaddingTop(int paddingTop) {
+        //TODO: add validation
+        this.paddingTop = paddingTop;
+    }
+
+    public void setPaddingBottom(int paddingBottom) {
+        //TODO: add validation
+        this.paddingBottom = paddingBottom;
     }
 }

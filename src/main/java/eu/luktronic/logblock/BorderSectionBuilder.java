@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 /**
- * Class that is responsible for building the {@link LogBlockSection} of the border using the specified
+ * Class that is responsible for building the {@link HorizontalLogBlockSection} of the border using the specified
  * {@link BorderFormat}.
  */
 class BorderSectionBuilder implements SectionBuilder {
@@ -19,7 +19,7 @@ class BorderSectionBuilder implements SectionBuilder {
     }
 
     @Override
-    public LogBlockSection build() {
+    public HorizontalLogBlockSection build() {
         val delimiter = format.getDelimiter();
         val delimiterCount = format.getDelimiterCount();
         val thickness = format.getThickness();
@@ -36,6 +36,6 @@ class BorderSectionBuilder implements SectionBuilder {
             lines.add(line);
         }
 
-        return new LogBlockSection(lines);
+        return new HorizontalLogBlockSection(lines);
     }
 }

@@ -1,14 +1,14 @@
 package eu.luktronic.logblock;
 
 /**
- * An interface defining a method that can build a {@link LogBlockSection}.
+ * An interface defining a method that can build a {@link HorizontalLogBlockSection}.
  */
 @FunctionalInterface
 interface SectionBuilder {
 
     /**
-     * Builds a {@link LogBlockSection} and returns it.
-     * @return The built {@link LogBlockSection}.
+     * Builds a {@link HorizontalLogBlockSection} and returns it.
+     * @return The built {@link HorizontalLogBlockSection}.
      */
-    LogBlockSection build();
+    HorizontalLogBlockSection build();
 }

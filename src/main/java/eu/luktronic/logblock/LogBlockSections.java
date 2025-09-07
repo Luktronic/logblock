@@ -12,16 +12,16 @@ import java.util.stream.Collectors;
 @Getter
 class LogBlockSections {
 
-    private final LogBlockSection prefixSection;
-    private final LogBlockSection borderSection;
-    private final LogBlockSection paddingTopSection;
-    private final LogBlockSection paddingLeftSection;
-    private final LogBlockSection paddingBottomSection;
-    private final LogBlockSection msgSection;
+    private final HorizontalLogBlockSection prefixSection;
+    private final HorizontalLogBlockSection borderSection;
+    private final HorizontalLogBlockSection paddingTopSection;
+    private final HorizontalLogBlockSection paddingLeftSection;
+    private final HorizontalLogBlockSection paddingBottomSection;
+    private final HorizontalLogBlockSection msgSection;
 
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
-        this.prefixSection = new LogBlockSection(Collections.singletonList(new LogBlockLine(format.getLinePrefix())));
+        this.prefixSection = new HorizontalLogBlockSection(Collections.singletonList(new LogBlockLine(format.getLinePrefix())));
         this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
         this.paddingTopSection = new HorizontalPaddingSectionBuilder(format.getPaddingTop()).build();
         this.paddingBottomSection = new HorizontalPaddingSectionBuilder(format.getPaddingBottom()).build();

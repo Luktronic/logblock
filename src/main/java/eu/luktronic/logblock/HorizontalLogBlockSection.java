@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Class that represents a section inside a log block.
+ * Class that represents a horizontal section inside a log block.
  */
 @Slf4j
-class LogBlockSection {
+class HorizontalLogBlockSection {
 
     private final List<LogBlockLine> lines;
 
-    LogBlockSection(List<LogBlockLine> lines) {
+    HorizontalLogBlockSection(List<LogBlockLine> lines) {
         Objects.requireNonNull(lines, "Received null lines in LogBlockSection constructor!");
         this.lines = new ArrayList<>(lines);
     }

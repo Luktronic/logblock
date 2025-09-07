@@ -38,7 +38,7 @@ class BorderSectionBuilderTest {
         @Nested
         @DisplayName("should successfully return section")
         class ShouldReturnSection {
-            LogBlockSection section = borderSectionBuilder.build();
+            HorizontalLogBlockSection section = borderSectionBuilder.build();
 
             @Test
             @DisplayName("with correct thickness")

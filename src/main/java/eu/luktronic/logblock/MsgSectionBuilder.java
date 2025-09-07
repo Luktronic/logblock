@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-/// Class that is responsible for building the [LogBlockSection] of the message section using the passed
+/// Class that is responsible for building the [HorizontalLogBlockSection] of the message section using the passed
 /// message.
 ///
 /// ## Parameter handling
@@ -65,7 +65,7 @@ class MsgSectionBuilder implements SectionBuilder{
     }
 
     @Override
-    public LogBlockSection build() {
+    public HorizontalLogBlockSection build() {
         val msgLines = msg.split("\n");
 
         val availableParams = new ArrayList<>(params);
@@ -74,7 +74,7 @@ class MsgSectionBuilder implements SectionBuilder{
                 .map(line -> buildBlockLineForLine(line, availableParams))
                 .collect(Collectors.toList());
 
-        return new LogBlockSection(lines);
+        return new HorizontalLogBlockSection(lines);
     }
 
     private LogBlockLine buildBlockLineForLine(String line, List<Object> availableParams) {

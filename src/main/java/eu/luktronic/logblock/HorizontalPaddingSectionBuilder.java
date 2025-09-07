@@ -4,7 +4,7 @@ import lombok.val;
 
 import java.util.ArrayList;
 
-/// Class responsible for building the [LogBlockSection] of horizontal paddings (top/bottom) using the specified
+/// Class responsible for building the [HorizontalLogBlockSection] of horizontal paddings (top/bottom) using the specified
 /// [BorderFormat].
 class HorizontalPaddingSectionBuilder implements SectionBuilder{
 
@@ -15,11 +15,11 @@ class HorizontalPaddingSectionBuilder implements SectionBuilder{
     }
 
     @Override
-    public LogBlockSection build() {
+    public HorizontalLogBlockSection build() {
         val lines = new ArrayList<LogBlockLine>(padding);
         for(int i = 0; i < padding; i++) {
             lines.add(new LogBlockLine(""));
         }
-        return new LogBlockSection(lines);
+        return new HorizontalLogBlockSection(lines);
     }
 }

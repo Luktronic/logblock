@@ -39,9 +39,10 @@ class BuildBlock {
         lines.addAll(paddingBottomLines);
         lines.addAll(borderLines);
 
-        return lines.stream()
-                .map(line -> line.prepend(prefixline))
-                .collect(Collectors.toList());
+        return sections.getPrefixSection().getLines();
+//        return lines.stream()
+//                .map(line -> line.prepend(prefixline))
+//                .collect(Collectors.toList());
     }
 
     private List<LogBlockLine> applyPadding(String padding, List<LogBlockLine> lines) {

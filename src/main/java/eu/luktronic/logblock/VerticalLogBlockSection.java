@@ -28,13 +28,14 @@ class VerticalLogBlockSection extends LogBlockSection {
     @Override
     public List<LogBlockLine> getLines() {
         val lineCount = lineCount();
-        val lines = new ArrayList<LogBlockLine>();
+        val lines = new ArrayList<LogBlockLine>(lineCount);
 
         children.stream()
                 .map(LogBlockSection::getLines)
-                .forEach(lines::addAll);
+                .flatMap(Collection::stream)
+                .map(line -> line.prepend(prefix))
+                .forEach(lines::add);
 
-        lines.forEach(line -> line.prepend(prefix));
         return lines;
     }
 

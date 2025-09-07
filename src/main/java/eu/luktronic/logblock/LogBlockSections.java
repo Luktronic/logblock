@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Getter
 class LogBlockSections {
 
-    private final HorizontalLogBlockSection prefixSection;
+    private final VerticalLogBlockSection prefixSection;
     private final HorizontalLogBlockSection borderSection;
     private final HorizontalLogBlockSection paddingTopSection;
     private final VerticalLogBlockSection paddingLeftSection;
@@ -21,12 +21,13 @@ class LogBlockSections {
 
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
-        this.prefixSection = new HorizontalLogBlockSection(Collections.singletonList(new LogBlockLine(format.getLinePrefix())));
         this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
         this.paddingTopSection = new HorizontalPaddingSectionBuilder(format.getPaddingTop()).build();
         this.paddingBottomSection = new HorizontalPaddingSectionBuilder(format.getPaddingBottom()).build();
         this.msgSection = new MsgSectionBuilder(msg, params).build();
         this.paddingLeftSection = new VerticalPaddingSectionBuilder(format, msgSection).build();
+
+        this.prefixSection = new VerticalLogBlockSection(format.getLinePrefix(), borderSection, paddingTopSection, paddingLeftSection, paddingBottomSection, borderSection);
     }
 
     private List<LogBlockLine> buildMsgSection(LogBlockFormat format, String msg) {

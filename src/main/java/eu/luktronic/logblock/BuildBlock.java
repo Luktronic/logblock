@@ -24,11 +24,11 @@ class BuildBlock {
      * @return An ordered {@link List} of all the {@link LogBlockLine lines} of the block.
      */
     public List<LogBlockLine> andGetLines() {
-        val prefixline = sections.getPrefixSection().getLines().get(0);
+        val prefixline = sections.getPrefixSection().getLines().get(0).getLine();
         val borderLines = sections.getBorderSection().getLines();
         val paddingTopLines = sections.getPaddingTopSection().getLines();
         val paddingBottomLines = sections.getPaddingBottomSection().getLines();
-        val paddingLeftLine = sections.getPaddingLeftSection().getLines().get(0);
+        val paddingLeftLine = sections.getPaddingLeftSection().getLines().get(0).getLine();
         val msgLines = applyPadding(paddingLeftLine, sections.getMsgSection().getLines());
 
         val lineCount = 2 * borderLines.size() + msgLines.size();
@@ -44,7 +44,7 @@ class BuildBlock {
                 .collect(Collectors.toList());
     }
 
-    private List<LogBlockLine> applyPadding(LogBlockLine padding, List<LogBlockLine> lines) {
+    private List<LogBlockLine> applyPadding(String padding, List<LogBlockLine> lines) {
         return lines.stream()
                 .map(line -> line.prepend(padding))
                 .collect(Collectors.toList());

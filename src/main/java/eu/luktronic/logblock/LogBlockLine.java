@@ -38,14 +38,12 @@ class LogBlockLine {
         return Collections.unmodifiableList(params);
     }
 
-    /// Returns a new [LogBlockLine] that is prepended by the passed `lines`.
-    /// @return New [LogBlockLine] prepended by the passed `lines`.
-    public LogBlockLine prepend(LogBlockLine... lines) {
-        val prefix = Arrays.stream(lines)
-                .map(LogBlockLine::getLine)
-                .collect(Collectors.joining());
+    /// Returns a new [LogBlockLine] that is prepended by the passed `prefixes`.
+    /// @return New [LogBlockLine] prepended by the passed `prefixes`.
+    public LogBlockLine prepend(String prefix, String... prefixes) {
+        val finalPrefix = prefix + String.join("", prefixes);
 
-        return new LogBlockLine(prefix + line, params);
+        return new LogBlockLine(finalPrefix + line, params);
     }
 
     @Override

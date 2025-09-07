@@ -15,7 +15,7 @@ class LogBlockSections {
     private final HorizontalLogBlockSection prefixSection;
     private final HorizontalLogBlockSection borderSection;
     private final HorizontalLogBlockSection paddingTopSection;
-    private final HorizontalLogBlockSection paddingLeftSection;
+    private final VerticalLogBlockSection paddingLeftSection;
     private final HorizontalLogBlockSection paddingBottomSection;
     private final HorizontalLogBlockSection msgSection;
 
@@ -25,8 +25,8 @@ class LogBlockSections {
         this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
         this.paddingTopSection = new HorizontalPaddingSectionBuilder(format.getPaddingTop()).build();
         this.paddingBottomSection = new HorizontalPaddingSectionBuilder(format.getPaddingBottom()).build();
-        this.paddingLeftSection = new PaddingLeftSectionBuilder(format).build();
         this.msgSection = new MsgSectionBuilder(msg, params).build();
+        this.paddingLeftSection = new VerticalPaddingSectionBuilder(format, msgSection).build();
     }
 
     private List<LogBlockLine> buildMsgSection(LogBlockFormat format, String msg) {

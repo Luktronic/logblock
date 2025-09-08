@@ -99,7 +99,7 @@ public class LogBlock {
     }
 
     private void executeLogging(BiConsumer<String, Object[]> logConsumer, String msg, Object... params) {
-        val lines = new LogBlockSections(tempFormat, msg, params).getPrefixSection().getLines();
+        val lines = new LogBlockSections(tempFormat, msg, params).getRootSection().getLines();
         lines.forEach(line -> logLine(logConsumer, line));
         tempFormat = new LogBlockFormat(baseFormat);
     }

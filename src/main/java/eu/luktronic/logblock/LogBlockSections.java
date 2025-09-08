@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Getter
 class LogBlockSections {
 
-    private final VerticalLogBlockSection prefixSection;
+    private final VerticalLogBlockSection rootSection;
 
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
@@ -22,7 +22,7 @@ class LogBlockSections {
         val msgSection = new MsgSectionBuilder(msg, params).build();
         val paddingLeftSection = new VerticalPaddingSectionBuilder(format, msgSection).build();
 
-        this.prefixSection = new VerticalLogBlockSection(format.getLinePrefix(), borderSection, paddingTopSection, paddingLeftSection, paddingBottomSection, borderSection);
+        this.rootSection = new VerticalLogBlockSection(format.getLinePrefix(), borderSection, paddingTopSection, paddingLeftSection, paddingBottomSection, borderSection);
     }
 
     private List<LogBlockLine> buildMsgSection(LogBlockFormat format, String msg) {

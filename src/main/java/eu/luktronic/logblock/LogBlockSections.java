@@ -13,19 +13,14 @@ import java.util.stream.Collectors;
 class LogBlockSections {
 
     private final VerticalLogBlockSection prefixSection;
-    private final HorizontalLogBlockSection borderSection;
-    private final HorizontalLogBlockSection paddingTopSection;
-    private final VerticalLogBlockSection paddingLeftSection;
-    private final HorizontalLogBlockSection paddingBottomSection;
-    private final HorizontalLogBlockSection msgSection;
 
     public LogBlockSections(LogBlockFormat format, String msg, Object... params) {
         Objects.requireNonNull(format, "Received null format in LogBlockSections constructor!");
-        this.borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
-        this.paddingTopSection = new HorizontalPaddingSectionBuilder(format.getPaddingTop()).build();
-        this.paddingBottomSection = new HorizontalPaddingSectionBuilder(format.getPaddingBottom()).build();
-        this.msgSection = new MsgSectionBuilder(msg, params).build();
-        this.paddingLeftSection = new VerticalPaddingSectionBuilder(format, msgSection).build();
+        val borderSection = new BorderSectionBuilder(format.getBorderFormat()).build();
+        val paddingTopSection = new HorizontalPaddingSectionBuilder(format.getPaddingTop()).build();
+        val paddingBottomSection = new HorizontalPaddingSectionBuilder(format.getPaddingBottom()).build();
+        val msgSection = new MsgSectionBuilder(msg, params).build();
+        val paddingLeftSection = new VerticalPaddingSectionBuilder(format, msgSection).build();
 
         this.prefixSection = new VerticalLogBlockSection(format.getLinePrefix(), borderSection, paddingTopSection, paddingLeftSection, paddingBottomSection, borderSection);
     }

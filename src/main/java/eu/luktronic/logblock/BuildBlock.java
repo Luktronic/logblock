@@ -1,10 +1,6 @@
 package eu.luktronic.logblock;
 
-import lombok.val;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -24,25 +20,7 @@ class BuildBlock {
      * @return An ordered {@link List} of all the {@link LogBlockLine lines} of the block.
      */
     public List<LogBlockLine> andGetLines() {
-        val prefixline = sections.getPrefixSection().getLines().get(0).getLine();
-        val borderLines = sections.getBorderSection().getLines();
-        val paddingTopLines = sections.getPaddingTopSection().getLines();
-        val paddingBottomLines = sections.getPaddingBottomSection().getLines();
-        val paddingLeftLine = sections.getPaddingLeftSection().getLines().get(0).getLine();
-        val msgLines = applyPadding(paddingLeftLine, sections.getMsgSection().getLines());
-
-        val lineCount = 2 * borderLines.size() + msgLines.size();
-        val lines = new ArrayList<LogBlockLine>(lineCount);
-        lines.addAll(borderLines);
-        lines.addAll(paddingTopLines);
-        lines.addAll(msgLines);
-        lines.addAll(paddingBottomLines);
-        lines.addAll(borderLines);
-
         return sections.getPrefixSection().getLines();
-//        return lines.stream()
-//                .map(line -> line.prepend(prefixline))
-//                .collect(Collectors.toList());
     }
 
     private List<LogBlockLine> applyPadding(String padding, List<LogBlockLine> lines) {

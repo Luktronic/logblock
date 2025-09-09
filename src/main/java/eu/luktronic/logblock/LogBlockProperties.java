@@ -49,4 +49,17 @@ public class LogBlockProperties {
     /// ```
     public static final String BORDER_THICKNESS = BORDER + ".thickness";
 
+
+    /// The [String] that will be printed at the start of every line of the LogBlock.
+    ///
+    /// Expects: [String]<br>
+    /// If set to blank [String], will default to `|`.
+    ///
+    /// In this example, the line prefix would be `|`:
+    /// ```text
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// [INFO] | This is my LogBlock!
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// ```
+    public static final String LINE_PREFIX = PREFIX + ".line-prefix";
 }

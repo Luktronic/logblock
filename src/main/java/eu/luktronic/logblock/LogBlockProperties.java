@@ -62,4 +62,30 @@ public class LogBlockProperties {
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
     public static final String LINE_PREFIX = PREFIX + ".line-prefix";
+
+
+    private static final String PADDING = PREFIX + ".padding";
+    /// Specifies how many whitespace characters should be printed before the actual
+    /// log message.<br>
+    /// The border <b>is not</b> affected by this! Only the message that you pass to the LogBlock logger itself will get
+    /// spaced.
+    ///
+    /// Expects: `int` >= 0<br>
+    /// If set to value <0, will default to `2`.
+    ///
+    /// In this example, the left padding would be `4` (leading to 4 whitespaces being printed before the actual message):
+    /// ```text
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// [INFO] |
+    /// [INFO] |    This is my LogBlock!
+    /// [INFO] |    And this is my message for the block!
+    /// [INFO] |      Keep in mind that a line of a message may still start with whitespaces!
+    /// [INFO] |      For example, this line starts with 2 whitespaces.
+    /// [INFO] |      But the padding moves the entire message to the right by 4 whitespaces,
+    /// [INFO] |      so the spaces add up to 6!
+    /// [INFO] |    But a normal message that starts without any spaces looks like this.
+    /// [INFO] |
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// ```
+    public static final String PADDING_LEFT = PADDING + ".left";
 }

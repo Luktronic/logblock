@@ -88,4 +88,36 @@ public class LogBlockProperties {
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
     public static final String PADDING_LEFT = PADDING + ".left";
+    /// Specifies how many lines should be logged after the top border, but before the actual
+    /// log message.<br>
+    ///
+    /// Expects: `int` >= 0<br>
+    /// If set to value <0, will default to `1`.
+    ///
+    /// In this example, the top padding would be `2` (leading to 2 lines logged before the actual message):
+    /// ```text
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// [INFO] |
+    /// [INFO] |
+    /// [INFO] |    This is my LogBlock!
+    /// [INFO] |
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// ```
+    public static final String PADDING_TOP = PADDING + ".top";
+    /// Specifies how many lines should be logged after the log message, but before the
+    /// bottom border.<br>
+    ///
+    /// Expects: `int` >= 0<br>
+    /// If set to value <0, will default to `1`.
+    ///
+    /// In this example, the bottom padding would be `2` (leading to 2 lines logged after the actual message):
+    /// ```text
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// [INFO] |
+    /// [INFO] |    This is my LogBlock!
+    /// [INFO] |
+    /// [INFO] |
+    /// [INFO] |++++++++++++++++++++++++++++++++++++++
+    /// ```
+    public static final String PADDING_BOTTOM = PADDING + ".top";
 }

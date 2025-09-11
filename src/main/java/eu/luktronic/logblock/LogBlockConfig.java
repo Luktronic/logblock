@@ -3,25 +3,52 @@ package eu.luktronic.logblock;
 import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 
+import java.util.function.Predicate;
+
 /// Class responsible for reading all the configs of LogBlock.
 @Slf4j
 class LogBlockConfig {
 
     private static final String customBorderDelimiter = System.getProperty("");
 
-    private static int getIntProperty(String key, int def) {
+    /// Reads the `int` value of System property with the passed `key` or falls back to
+    /// a default value `def`.
+    ///
+    /// Falling back to default value will happen if System property:
+    /// - is not set
+    /// - is not an `int`
+    /// - does not pass the specified [Validation] check.
+    private static int getIntProperty(String key, int def, Validation validation) {
         val property = System.getProperty(key, Integer.toString(def));
 
         int finalValue = def;
         try {
-            val intValue = Integer.parseInt(property);
-            //TODO: do validations
-            finalValue = intValue;
+            val propertyIntValue = Integer.parseInt(property);
+            if(validation.validationPredicate.test(propertyIntValue))
+                finalValue = propertyIntValue;
+            else
+                log.warn("Reverting value for '{}' to default '{}' - custom value did not pass validation: {}", key, def, validation.errorMsg);
 
         } catch (NumberFormatException numberFormatException) {
-            log.warn("Encountered exception");
+            val propertyValue = System.getProperty(key);
+            log.warn("Reverting value for '{}' to default '{}' - custom value '{}' could not be parsed to int", key, def, propertyValue);
         }
-
         return finalValue;
+    }
+
+    /// Defines standardized validations for properties by providing the error message to be logged
+    /// as well as a [Predicate] which will perform the actual validation check.
+    private enum Validation {
+        GREATER_THAN_ZERO_INTEGER("Must be greater than 0 integer", (x) -> x > 0),
+        POSITIVE_INTEGER("Must be positive (>=0) integer", (x) -> x >= 0),
+        ;
+
+        private final String errorMsg;
+        private final Predicate<Integer> validationPredicate;
+
+        Validation(String errorMsg, Predicate<Integer> validationPredicate) {
+            this.errorMsg = errorMsg;
+            this.validationPredicate = validationPredicate;
+        }
     }
 }

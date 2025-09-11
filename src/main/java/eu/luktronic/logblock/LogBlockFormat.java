@@ -31,11 +31,10 @@ public class LogBlockFormat {
      */
     public LogBlockFormat() {
         this.borderFormat = new BorderFormat();
-        //TODO: change value to be read from config
-        this.linePrefix = "|";
-        this.paddingTop = 1;
-        this.paddingBottom = 1;
-        this.paddingLeft = 2;
+        this.linePrefix = LogBlockConfig.LINE_PREFIX;
+        this.paddingTop = LogBlockConfig.PADDLING_TOP;
+        this.paddingBottom = LogBlockConfig.PADDLING_BOTTOM;
+        this.paddingLeft = LogBlockConfig.PADDLING_LEFT;
     }
 
     /**

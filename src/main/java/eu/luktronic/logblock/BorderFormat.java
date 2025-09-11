@@ -24,11 +24,10 @@ public class BorderFormat {
     }
 
     public BorderFormat() {
-        //TODO: Change values to be queried from configs instead of hard coded
         this(
-                "=",
-                50,
-                1
+                LogBlockConfig.BORDER_DELIMITER,
+                LogBlockConfig.BORDER_LENGTH,
+                LogBlockConfig.BORDER_THICKNESS
         );
     }
 

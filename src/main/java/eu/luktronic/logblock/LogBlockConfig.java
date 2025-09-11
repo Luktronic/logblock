@@ -12,7 +12,7 @@ class LogBlockConfig {
     private static final ConfigReader configReader = new ConfigReader();
 
     static final String BORDER_DELIMITER = configReader.readBorderDelimiter();
-    static final int  BORDER_LENGTH = configReader.raedBorderLength();
+    static final int  BORDER_LENGTH = configReader.readBorderLength();
     static final int  BORDER_THICKNESS = configReader.readBorderThickness();
 
     static final String LINE_PREFIX = configReader.readLinePrefix();
@@ -43,7 +43,7 @@ class LogBlockConfig {
             return System.getProperty(LogBlockProperties.BORDER_DELIMITER, "=");
         }
 
-        public int raedBorderLength() {
+        public int readBorderLength() {
             return getIntProperty(LogBlockProperties.BORDER_LENGTH, 30, Validation.GREATER_THAN_ZERO_INTEGER);
         }
 

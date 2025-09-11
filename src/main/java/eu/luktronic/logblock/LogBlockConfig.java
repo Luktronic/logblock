@@ -9,7 +9,15 @@ import java.util.function.Predicate;
 @Slf4j
 class LogBlockConfig {
 
-    private static final String customBorderDelimiter = System.getProperty("");
+    static final String BORDER_DELIMITER = System.getProperty(LogBlockProperties.BORDER_DELIMITER, "=");
+    static final int  BORDER_LENGTH = getIntProperty(LogBlockProperties.BORDER_LENGTH, 30, Validation.GREATER_THAN_ZERO_INTEGER);
+    static final int  BORDER_THICKNESS = getIntProperty(LogBlockProperties.BORDER_THICKNESS, 1, Validation.GREATER_THAN_ZERO_INTEGER);
+
+    static final String LINE_PREFIX = System.getProperty(LogBlockProperties.LINE_PREFIX, "|");
+
+    static final int PADDLING_LEFT = getIntProperty(LogBlockProperties.PADDING_LEFT, 2, Validation.POSITIVE_INTEGER);
+    static final int PADDLING_TOP = getIntProperty(LogBlockProperties.PADDING_TOP, 1, Validation.POSITIVE_INTEGER);
+    static final int PADDLING_BOTTOM = getIntProperty(LogBlockProperties.PADDING_BOTTOM, 1, Validation.POSITIVE_INTEGER);
 
     /// Reads the `int` value of System property with the passed `key` or falls back to
     /// a default value `def`.

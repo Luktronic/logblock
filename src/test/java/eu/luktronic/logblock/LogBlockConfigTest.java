@@ -60,7 +60,7 @@ class LogBlockConfigTest {
     @DisplayName("Border Length")
     class BorderLength {
 
-        static final int expectedDefaultValue = 30;
+        static final int expectedDefaultValue = 80;
         static final String property = LogBlockProperties.BORDER_LENGTH;
         static final Supplier<?> testedMethod = configReader::readBorderLength;
 

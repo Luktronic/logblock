@@ -21,7 +21,7 @@ public class LogBlockProperties {
     /// Specifies how many times the [delimiter][#BORDER_DELIMITER] will be repeated.
     ///
     /// Expects: `int` > 0<br>
-    /// If set to value <=0, will default to `30`.
+    /// If set to value <=0, will default to `80`.
     ///
     /// In this example, the length would be `20` (leading to 20x`=` being logged):
     /// ```text

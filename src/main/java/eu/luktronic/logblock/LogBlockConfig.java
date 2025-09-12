@@ -44,7 +44,7 @@ class LogBlockConfig {
         }
 
         public int readBorderLength() {
-            return getIntProperty(LogBlockProperties.BORDER_LENGTH, 30, Validation.GREATER_THAN_ZERO_INTEGER);
+            return getIntProperty(LogBlockProperties.BORDER_LENGTH, 80, Validation.GREATER_THAN_ZERO_INTEGER);
         }
 
         public int readBorderThickness() {

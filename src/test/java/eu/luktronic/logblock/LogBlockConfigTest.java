@@ -49,7 +49,7 @@ class LogBlockConfigTest {
 
                 @Test
                 @DisplayName("should set delimiter to configured value")
-                void shouldSetDelimiterToValue() {
+                void shouldSetToNewValue() {
                     assertThat(testedMethod.get()).isEqualTo(getNewValue());
                 }
             }
@@ -95,7 +95,7 @@ class LogBlockConfigTest {
 
                 @Test
                 @DisplayName("should set delimiter to configured value")
-                void shouldSetDelimiterToValue() {
+                void shouldSetToNewValue() {
                     assertThat(testedMethod.get()).isEqualTo(getNewValue());
                 }
             }
@@ -116,7 +116,7 @@ class LogBlockConfigTest {
 
                 @Test
                 @DisplayName("should fall back to default value")
-                void shouldSetDelimiterToValue() {
+                void shouldFallBackToDefaultValue() {
                     assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
                 }
             }
@@ -162,7 +162,7 @@ class LogBlockConfigTest {
 
                 @Test
                 @DisplayName("should set delimiter to configured value")
-                void shouldSetDelimiterToValue() {
+                void shouldSetToNewValue() {
                     assertThat(testedMethod.get()).isEqualTo(getNewValue());
                 }
             }
@@ -183,7 +183,254 @@ class LogBlockConfigTest {
 
                 @Test
                 @DisplayName("should fall back to default value")
-                void shouldSetDelimiterToValue() {
+                void shouldFallBackToDefaultValue() {
+                    assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+                }
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("Line Prefix")
+    class LinePrefix {
+
+        static final String expectedDefaultValue = "|";
+        static final String property = LogBlockProperties.LINE_PREFIX;
+        static final Supplier<?> testedMethod = configReader::readLinePrefix;
+
+        @Nested
+        @DisplayName("with no custom config")
+        class WithNoCustomConfig {
+
+            @Test
+            @DisplayName("should have correct default value")
+            void shouldHaveCorrectDefaultValue() {
+                assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+            }
+        }
+
+        @Nested
+        @DisplayName("with '" + property + "' set to")
+        class WithPropertySetTo {
+
+            @Nested
+            @DisplayName("valid value")
+            class ValidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                String getNewValue() {
+                    return "/";
+                }
+
+                @Test
+                @DisplayName("should set delimiter to configured value")
+                void shouldSetToNewValue() {
+                    assertThat(testedMethod.get()).isEqualTo(getNewValue());
+                }
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("Padding Left")
+    class PaddingLeft {
+
+        static final int expectedDefaultValue = 2;
+        static final String property = LogBlockProperties.PADDING_LEFT;
+        static final Supplier<?> testedMethod = configReader::readPaddingLeft;
+
+        @Nested
+        @DisplayName("with no custom config")
+        class WithNoCustomConfig {
+
+            @Test
+            @DisplayName("should have correct default value")
+            void shouldHaveCorrectDefaultValue() {
+                assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+            }
+        }
+
+        @Nested
+        @DisplayName("with '" + property + "' set to")
+        class WithPropertySetTo {
+
+            @Nested
+            @DisplayName("valid value")
+            class ValidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                Integer getNewValue() {
+                    return 13;
+                }
+
+                @Test
+                @DisplayName("should set delimiter to configured value")
+                void shouldSetToNewValue() {
+                    assertThat(testedMethod.get()).isEqualTo(getNewValue());
+                }
+            }
+
+            @Nested
+            @DisplayName("invalid value")
+            class InvalidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                Integer getNewValue() {
+                    return -13;
+                }
+
+                @Test
+                @DisplayName("should fall back to default value")
+                void shouldFallBackToDefaultValue() {
+                    assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+                }
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("Padding Top")
+    class PaddingTop {
+
+        static final int expectedDefaultValue = 1;
+        static final String property = LogBlockProperties.PADDING_TOP;
+        static final Supplier<?> testedMethod = configReader::readPaddingTop;
+
+        @Nested
+        @DisplayName("with no custom config")
+        class WithNoCustomConfig {
+
+            @Test
+            @DisplayName("should have correct default value")
+            void shouldHaveCorrectDefaultValue() {
+                assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+            }
+        }
+
+        @Nested
+        @DisplayName("with '" + property + "' set to")
+        class WithPropertySetTo {
+
+            @Nested
+            @DisplayName("valid value")
+            class ValidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                Integer getNewValue() {
+                    return 13;
+                }
+
+                @Test
+                @DisplayName("should set delimiter to configured value")
+                void shouldSetToNewValue() {
+                    assertThat(testedMethod.get()).isEqualTo(getNewValue());
+                }
+            }
+
+            @Nested
+            @DisplayName("invalid value")
+            class InvalidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                Integer getNewValue() {
+                    return -13;
+                }
+
+                @Test
+                @DisplayName("should fall back to default value")
+                void shouldFallBackToDefaultValue() {
+                    assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+                }
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("Padding Bottom")
+    class PaddingBottom {
+
+        static final int expectedDefaultValue = 1;
+        static final String property = LogBlockProperties.PADDING_BOTTOM;
+        static final Supplier<?> testedMethod = configReader::readPaddingBottom;
+
+        @Nested
+        @DisplayName("with no custom config")
+        class WithNoCustomConfig {
+
+            @Test
+            @DisplayName("should have correct default value")
+            void shouldHaveCorrectDefaultValue() {
+                assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+            }
+        }
+
+        @Nested
+        @DisplayName("with '" + property + "' set to")
+        class WithPropertySetTo {
+
+            @Nested
+            @DisplayName("valid value")
+            class ValidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                Integer getNewValue() {
+                    return 13;
+                }
+
+                @Test
+                @DisplayName("should set delimiter to configured value")
+                void shouldSetToNewValue() {
+                    assertThat(testedMethod.get()).isEqualTo(getNewValue());
+                }
+            }
+
+            @Nested
+            @DisplayName("invalid value")
+            class InvalidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                Integer getNewValue() {
+                    return -13;
+                }
+
+                @Test
+                @DisplayName("should fall back to default value")
+                void shouldFallBackToDefaultValue() {
                     assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
                 }
             }

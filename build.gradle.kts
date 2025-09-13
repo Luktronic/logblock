@@ -7,9 +7,11 @@ plugins {
 }
 
 group = "eu.luktronic"
-version = "0.1-2.0"
+version = "0.1-5.0"
 
 java {
+    withJavadocJar()
+    withSourcesJar()
     toolchain {
         languageVersion = JavaLanguageVersion.of(24);
     }

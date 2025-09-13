@@ -5,21 +5,18 @@ import lombok.val;
 
 import java.util.Objects;
 
-/**
- * Defines the format that should be used when a {@link LogBlock} is being logged.
- *
- * <p>
- * A Format includes things like:
- * <ul>
- *     <li>block border</li>
- *     <li>line prefix</li>
-*     <li>top/bottom/left padding</li>
- * </ul>
- * ...and many more!
- * </p>
- */
+/// Defines the format that should be used when a [LogBlock] is being logged.
+///
+///
+/// A Format includes things like:
+///
+///   - block border
+///   - line prefix
+///   - top/bottom/left padding
+///
+/// ...and many more!
 @Getter
-public class LogBlockFormat {
+class LogBlockFormat {
 
     private BorderFormat borderFormat;
     private String linePrefix;

@@ -3,9 +3,6 @@ package eu.luktronic.logblock;
 /// Defines the system properties used for the [LogBlockConfig].
 public class LogBlockProperties {
 
-    private static final String PREFIX = "eu.luktronic.logblock";
-
-    private static final String BORDER = PREFIX + ".border";
     /// The String used for the border itself.
     ///
     /// Expects: [String]<br>
@@ -17,7 +14,7 @@ public class LogBlockProperties {
     /// [INFO] | This is my LogBlock!
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
-    public static final String BORDER_DELIMITER = BORDER + ".delimiter";
+    public static final String BORDER_DELIMITER = "eu.luktronic.logblock.border.delimiter";
     /// Specifies how many times the [delimiter][#BORDER_DELIMITER] will be repeated.
     ///
     /// Expects: `int` > 0<br>
@@ -29,7 +26,7 @@ public class LogBlockProperties {
     /// [INFO] | This is my LogBlock!
     /// [INFO] |====================
     /// ```
-    public static final String BORDER_LENGTH = BORDER + ".length";
+    public static final String BORDER_LENGTH = "eu.luktronic.logblock.border.length";
     /// Specifies how many lines "thick" the border should be (meaning how often the border-line gets logged).
     ///
     /// Expects: `int` > 0<br>
@@ -47,7 +44,7 @@ public class LogBlockProperties {
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
-    public static final String BORDER_THICKNESS = BORDER + ".thickness";
+    public static final String BORDER_THICKNESS = "eu.luktronic.logblock.border.thickness";
 
 
     /// The [String] that will be printed at the start of every line of the LogBlock.
@@ -61,10 +58,9 @@ public class LogBlockProperties {
     /// [INFO] | This is my LogBlock!
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
-    public static final String LINE_PREFIX = PREFIX + ".line-prefix";
+    public static final String LINE_PREFIX = "eu.luktronic.logblock.line-prefix";
 
 
-    private static final String PADDING = PREFIX + ".padding";
     /// Specifies how many whitespace characters should be printed before the actual
     /// log message.<br>
     /// The border <b>is not</b> affected by this! Only the message that you pass to the LogBlock logger itself will get
@@ -87,7 +83,7 @@ public class LogBlockProperties {
     /// [INFO] |
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
-    public static final String PADDING_LEFT = PADDING + ".left";
+    public static final String PADDING_LEFT = "eu.luktronic.logblock.padding.left";
     /// Specifies how many lines should be logged after the top border, but before the actual
     /// log message.<br>
     ///
@@ -103,7 +99,7 @@ public class LogBlockProperties {
     /// [INFO] |
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
-    public static final String PADDING_TOP = PADDING + ".top";
+    public static final String PADDING_TOP = "eu.luktronic.logblock.padding.top";
     /// Specifies how many lines should be logged after the log message, but before the
     /// bottom border.<br>
     ///
@@ -119,5 +115,5 @@ public class LogBlockProperties {
     /// [INFO] |
     /// [INFO] |++++++++++++++++++++++++++++++++++++++
     /// ```
-    public static final String PADDING_BOTTOM = PADDING + ".top";
+    public static final String PADDING_BOTTOM = "eu.luktronic.logblock.padding.top";
 }

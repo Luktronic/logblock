@@ -63,18 +63,18 @@ class BorderSectionBuilderTest {
             }
 
             @Test
-            @DisplayName("with correct delimiter count")
-            void withCorrectDelimiterCount() {
+            @DisplayName("with correct border length")
+            void withCorrectBorderLength() {
                 val delimiter = Pattern.quote(format.getDelimiter());
 
-                val delimiterCounts = section.getLines().stream()
+                val borderLengths = section.getLines().stream()
                         .map(LogBlockLine::getLine)
                         .map(StringUtils::new)
                         .map(str -> str.countOccurrencesOf(delimiter))
                         .collect(Collectors.toList());
 
-                assertThatList(delimiterCounts)
-                        .allMatch(count -> count.equals(format.getDelimiterCount()));
+                assertThatList(borderLengths)
+                        .allMatch(length -> length.equals(format.getLength()));
             }
         }
     }

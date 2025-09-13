@@ -21,11 +21,11 @@ class BorderSectionBuilder implements SectionBuilder {
     @Override
     public HorizontalLogBlockSection build() {
         val delimiter = format.getDelimiter();
-        val delimiterCount = format.getDelimiterCount();
+        val length = format.getLength();
         val thickness = format.getThickness();
 
-        val stringBuilder = new StringBuilder(delimiterCount);
-        for(int i = 0; i < delimiterCount; i++) {
+        val stringBuilder = new StringBuilder(length);
+        for(int i = 0; i < length; i++) {
             stringBuilder.append(delimiter);
         }
         val baseLine = stringBuilder.toString();

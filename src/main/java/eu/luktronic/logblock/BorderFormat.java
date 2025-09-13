@@ -1,10 +1,7 @@
 package eu.luktronic.logblock;
 
 import lombok.Getter;
-import lombok.val;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -14,12 +11,12 @@ import java.util.Objects;
 public class BorderFormat {
 
     private String delimiter;
-    private int delimiterCount;
+    private int length;
     private int thickness;
 
-    public BorderFormat(String delimiter, int delimiterCount, int thickness) {
+    public BorderFormat(String delimiter, int length, int thickness) {
         this.delimiter = delimiter;
-        this.delimiterCount = delimiterCount;
+        this.length = length;
         this.thickness = thickness;
     }
 
@@ -38,7 +35,7 @@ public class BorderFormat {
     BorderFormat(BorderFormat other) {
         Objects.requireNonNull(other, "Received null format in BlockFormat constructor!");
         this.delimiter = other.delimiter;
-        this.delimiterCount = other.delimiterCount;
+        this.length = other.length;
         this.thickness = other.thickness;
     }
 
@@ -47,9 +44,9 @@ public class BorderFormat {
         this.delimiter = delimiter;
     }
 
-    public void setDelimiterCount(int delimiterCount) {
+    public void setLength(int length) {
         //TODO: add validation
-        this.delimiterCount = delimiterCount;
+        this.length = length;
     }
 
     public void setThickness(int thickness) {

@@ -70,8 +70,8 @@ public class LogBlock {
     }
 
     /// @see LogBlockProperties#BORDER_LENGTH
-    public LogBlock withBorderDelimiterCount(int delimiterCount) {
-        tempFormat.getBorderFormat().setDelimiterCount(delimiterCount);
+    public LogBlock withBorderLength(int length) {
+        tempFormat.getBorderFormat().setLength(length);
         return this;
     }
 

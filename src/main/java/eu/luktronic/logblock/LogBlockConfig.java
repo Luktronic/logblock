@@ -21,50 +21,34 @@ class LogBlockConfig {
     static final int PADDLING_TOP = configReader.readPaddingTop();
     static final int PADDLING_BOTTOM = configReader.readPaddingBottom();
 
-    /// Defines standardized validations for properties by providing the error message to be logged
-    /// as well as a [Predicate] which will perform the actual validation check.
-    enum Validation {
-        GREATER_THAN_ZERO_INTEGER("Must be greater than 0 integer", (x) -> x > 0),
-        POSITIVE_INTEGER("Must be positive (>=0) integer", (x) -> x >= 0),
-        ;
-
-        private final String errorMsg;
-        private final Predicate<Integer> validationPredicate;
-
-        Validation(String errorMsg, Predicate<Integer> validationPredicate) {
-            this.errorMsg = errorMsg;
-            this.validationPredicate = validationPredicate;
-        }
-    }
-
     static class ConfigReader {
 
         public String readBorderDelimiter() {
-            return System.getProperty(LogBlockSystemProperties.BORDER_DELIMITER, "=");
+            return System.getProperty(LogBlockProperty.BORDER_DELIMITER.getSystemProperty(), (String) LogBlockProperty.BORDER_DELIMITER.getDefaultValue());
         }
 
         public int readBorderLength() {
-            return getIntProperty(LogBlockSystemProperties.BORDER_LENGTH, 80, Validation.GREATER_THAN_ZERO_INTEGER);
+            return getIntProperty(LogBlockProperty.BORDER_LENGTH);
         }
 
         public int readBorderThickness() {
-            return getIntProperty(LogBlockSystemProperties.BORDER_THICKNESS, 1, Validation.GREATER_THAN_ZERO_INTEGER);
+            return getIntProperty(LogBlockProperty.BORDER_THICKNESS);
         }
 
         public String readLinePrefix() {
-            return System.getProperty(LogBlockSystemProperties.LINE_PREFIX, "|");
+            return System.getProperty(LogBlockProperty.LINE_PREFIX.getSystemProperty(), (String) LogBlockProperty.LINE_PREFIX.getDefaultValue());
         }
 
         public int readPaddingLeft() {
-            return getIntProperty(LogBlockSystemProperties.PADDING_LEFT, 2, Validation.POSITIVE_INTEGER);
+            return getIntProperty(LogBlockProperty.PADDING_LEFT);
         }
 
         public int readPaddingTop() {
-            return getIntProperty(LogBlockSystemProperties.PADDING_TOP, 1, Validation.POSITIVE_INTEGER);
+            return getIntProperty(LogBlockProperty.PADDING_TOP);
         }
 
         public int readPaddingBottom() {
-            return getIntProperty(LogBlockSystemProperties.PADDING_BOTTOM, 1, Validation.POSITIVE_INTEGER);
+            return getIntProperty(LogBlockProperty.PADDING_BOTTOM);
         }
         /// Reads the `int` value of System property with the passed `key` or falls back to
         /// a default value `def`.
@@ -72,17 +56,21 @@ class LogBlockConfig {
         /// Falling back to default value will happen if System property:
         /// - is not set
         /// - is not an `int`
-        /// - does not pass the specified [Validation] check.
-        private static int getIntProperty(String key, int def, Validation validation) {
+        /// - does not pass the specified [LogBlockProperty.Validation] check.
+        @SuppressWarnings("OptionalGetWithoutIsPresent")
+        private static int getIntProperty(LogBlockProperty logBlockProperty) {
+            val key = logBlockProperty.getSystemProperty();
+            val def = (Integer) logBlockProperty.getDefaultValue();
+            val validation = logBlockProperty.getValidation().get();
             val property = System.getProperty(key, Integer.toString(def));
 
             int finalValue = def;
             try {
                 val propertyIntValue = Integer.parseInt(property);
-                if(validation.validationPredicate.test(propertyIntValue))
+                if(validation.getValidationPredicate().test(propertyIntValue))
                     finalValue = propertyIntValue;
                 else
-                    log.warn("Reverting value for '{}' to default '{}' - custom value did not pass validation: {}", key, def, validation.errorMsg);
+                    log.warn("Reverting value for '{}' to default '{}' - custom value did not pass validation: {}", key, def, validation.getErrorMsg());
 
             } catch (NumberFormatException numberFormatException) {
                 val propertyValue = System.getProperty(key);

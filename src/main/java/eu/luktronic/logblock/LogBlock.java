@@ -63,26 +63,31 @@ public class LogBlock {
         executeLogging(log::error, msg, params);
     }
 
+    /// @see LogBlockProperties#BORDER_DELIMITER
     public LogBlock withBorderDelimiter(String delimiter) {
         tempFormat.getBorderFormat().setDelimiter(delimiter);
         return this;
     }
 
+    /// @see LogBlockProperties#BORDER_LENGTH
     public LogBlock withBorderDelimiterCount(int delimiterCount) {
         tempFormat.getBorderFormat().setDelimiterCount(delimiterCount);
         return this;
     }
 
+    /// @see LogBlockProperties#BORDER_THICKNESS
     public LogBlock withBorderThickness(int thickness) {
         tempFormat.getBorderFormat().setThickness(thickness);
         return this;
     }
 
+    /// @see LogBlockProperties#PADDING_LEFT
     public LogBlock withPaddingLeft(int paddingLeft) {
         tempFormat.setPaddingLeft(paddingLeft);
         return this;
     }
 
+    /// @see LogBlockProperties#LINE_PREFIX
     public LogBlock withLinePrefix(String linePrefix) {
         tempFormat.setLinePrefix(linePrefix);
         return this;

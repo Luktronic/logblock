@@ -54,7 +54,7 @@ enum LogBlockProperty {
         if(isValueValid)
             return value;
 
-        log.warn("Reverting value for '{}' to default '{}' - custom value did not pass validation: {}", this, this.defaultValue, this.validation.getErrorMsg());
+        log.warn("Reverting value for '{}' to default '{}' - custom value did not pass validation: {}", this.systemProperty, this.defaultValue, this.validation.getErrorMsg());
         return this.defaultValue;
     }
 

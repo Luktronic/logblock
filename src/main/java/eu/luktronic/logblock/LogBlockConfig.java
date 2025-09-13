@@ -52,25 +52,15 @@ class LogBlockConfig {
         }
         /// Reads the `int` value of System property with the passed `key` or falls back to
         /// a default value `def`.
-        ///
-        /// Falling back to default value will happen if System property:
-        /// - is not set
-        /// - is not an `int`
-        /// - does not pass the specified [LogBlockProperty.Validation] check.
         @SuppressWarnings("OptionalGetWithoutIsPresent")
         private static int getIntProperty(LogBlockProperty logBlockProperty) {
             val key = logBlockProperty.getSystemProperty();
             val def = (Integer) logBlockProperty.getDefaultValue();
-            val validation = logBlockProperty.getValidation().get();
             val property = System.getProperty(key, Integer.toString(def));
 
             int finalValue = def;
             try {
-                val propertyIntValue = Integer.parseInt(property);
-                if(validation.getValidationPredicate().test(propertyIntValue))
-                    finalValue = propertyIntValue;
-                else
-                    log.warn("Reverting value for '{}' to default '{}' - custom value did not pass validation: {}", key, def, validation.getErrorMsg());
+                finalValue = (Integer) logBlockProperty.getValueOrDefault(Integer.parseInt(property));
 
             } catch (NumberFormatException numberFormatException) {
                 val propertyValue = System.getProperty(key);

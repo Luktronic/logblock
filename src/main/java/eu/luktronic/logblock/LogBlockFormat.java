@@ -1,6 +1,7 @@
 package eu.luktronic.logblock;
 
 import lombok.Getter;
+import lombok.val;
 
 import java.util.Objects;
 
@@ -56,7 +57,10 @@ public class LogBlockFormat {
     }
 
     public void setPaddingLeft(int paddingLeft) {
-        //TODO: add validation
+        val isValueValid = LogBlockProperty.PADDING_LEFT.getValidation()
+                .getValidationPredicate()
+                .test(paddingLeft);
+        if(!isValueValid)
         this.paddingLeft = paddingLeft;
     }
 

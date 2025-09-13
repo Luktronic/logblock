@@ -105,7 +105,7 @@ different Java System properties.
 
 > [!TIP]
 > A fully documented list of all the System properties can be 
-> found in the public `LogBlockProperties` class.   
+> found in the public `LogBlockSystemProperties` class.   
 > It will tell you the name of the system property, what type is expected, 
 > what the default value is, and which validation rules apply.
 > <details>

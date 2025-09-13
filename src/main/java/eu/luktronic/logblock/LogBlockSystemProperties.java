@@ -1,7 +1,7 @@
 package eu.luktronic.logblock;
 
 /// Defines the system properties used for the [LogBlockConfig].
-public class LogBlockProperties {
+public class LogBlockSystemProperties {
 
     /// The String used for the border itself.
     ///

@@ -40,31 +40,31 @@ class LogBlockConfig {
     static class ConfigReader {
 
         public String readBorderDelimiter() {
-            return System.getProperty(LogBlockProperties.BORDER_DELIMITER, "=");
+            return System.getProperty(LogBlockSystemProperties.BORDER_DELIMITER, "=");
         }
 
         public int readBorderLength() {
-            return getIntProperty(LogBlockProperties.BORDER_LENGTH, 80, Validation.GREATER_THAN_ZERO_INTEGER);
+            return getIntProperty(LogBlockSystemProperties.BORDER_LENGTH, 80, Validation.GREATER_THAN_ZERO_INTEGER);
         }
 
         public int readBorderThickness() {
-            return getIntProperty(LogBlockProperties.BORDER_THICKNESS, 1, Validation.GREATER_THAN_ZERO_INTEGER);
+            return getIntProperty(LogBlockSystemProperties.BORDER_THICKNESS, 1, Validation.GREATER_THAN_ZERO_INTEGER);
         }
 
         public String readLinePrefix() {
-            return System.getProperty(LogBlockProperties.LINE_PREFIX, "|");
+            return System.getProperty(LogBlockSystemProperties.LINE_PREFIX, "|");
         }
 
         public int readPaddingLeft() {
-            return getIntProperty(LogBlockProperties.PADDING_LEFT, 2, Validation.POSITIVE_INTEGER);
+            return getIntProperty(LogBlockSystemProperties.PADDING_LEFT, 2, Validation.POSITIVE_INTEGER);
         }
 
         public int readPaddingTop() {
-            return getIntProperty(LogBlockProperties.PADDING_TOP, 1, Validation.POSITIVE_INTEGER);
+            return getIntProperty(LogBlockSystemProperties.PADDING_TOP, 1, Validation.POSITIVE_INTEGER);
         }
 
         public int readPaddingBottom() {
-            return getIntProperty(LogBlockProperties.PADDING_BOTTOM, 1, Validation.POSITIVE_INTEGER);
+            return getIntProperty(LogBlockSystemProperties.PADDING_BOTTOM, 1, Validation.POSITIVE_INTEGER);
         }
         /// Reads the `int` value of System property with the passed `key` or falls back to
         /// a default value `def`.

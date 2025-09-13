@@ -15,7 +15,7 @@ class LogBlockConfigTest {
     class BorderDelimiter {
 
         static final String expectedDefaultValue = "=";
-        static final String property = LogBlockProperties.BORDER_DELIMITER;
+        static final String property = LogBlockSystemProperties.BORDER_DELIMITER;
         static final Supplier<?> testedMethod = configReader::readBorderDelimiter;
 
         @Nested
@@ -61,7 +61,7 @@ class LogBlockConfigTest {
     class BorderLength {
 
         static final int expectedDefaultValue = 80;
-        static final String property = LogBlockProperties.BORDER_LENGTH;
+        static final String property = LogBlockSystemProperties.BORDER_LENGTH;
         static final Supplier<?> testedMethod = configReader::readBorderLength;
 
         @Nested
@@ -128,7 +128,7 @@ class LogBlockConfigTest {
     class BorderThickness {
 
         static final int expectedDefaultValue = 1;
-        static final String property = LogBlockProperties.BORDER_THICKNESS;
+        static final String property = LogBlockSystemProperties.BORDER_THICKNESS;
         static final Supplier<?> testedMethod = configReader::readBorderThickness;
 
         @Nested
@@ -195,7 +195,7 @@ class LogBlockConfigTest {
     class LinePrefix {
 
         static final String expectedDefaultValue = "|";
-        static final String property = LogBlockProperties.LINE_PREFIX;
+        static final String property = LogBlockSystemProperties.LINE_PREFIX;
         static final Supplier<?> testedMethod = configReader::readLinePrefix;
 
         @Nested
@@ -241,7 +241,7 @@ class LogBlockConfigTest {
     class PaddingLeft {
 
         static final int expectedDefaultValue = 2;
-        static final String property = LogBlockProperties.PADDING_LEFT;
+        static final String property = LogBlockSystemProperties.PADDING_LEFT;
         static final Supplier<?> testedMethod = configReader::readPaddingLeft;
 
         @Nested
@@ -308,7 +308,7 @@ class LogBlockConfigTest {
     class PaddingTop {
 
         static final int expectedDefaultValue = 1;
-        static final String property = LogBlockProperties.PADDING_TOP;
+        static final String property = LogBlockSystemProperties.PADDING_TOP;
         static final Supplier<?> testedMethod = configReader::readPaddingTop;
 
         @Nested
@@ -375,7 +375,7 @@ class LogBlockConfigTest {
     class PaddingBottom {
 
         static final int expectedDefaultValue = 1;
-        static final String property = LogBlockProperties.PADDING_BOTTOM;
+        static final String property = LogBlockSystemProperties.PADDING_BOTTOM;
         static final Supplier<?> testedMethod = configReader::readPaddingBottom;
 
         @Nested

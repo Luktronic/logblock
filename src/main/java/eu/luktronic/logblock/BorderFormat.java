@@ -40,17 +40,14 @@ public class BorderFormat {
     }
 
     public void setDelimiter(String delimiter) {
-        //TODO: add validation
-        this.delimiter = delimiter;
+        this.delimiter = (String) LogBlockProperty.BORDER_DELIMITER.getValueOrDefault(delimiter);
     }
 
     public void setLength(int length) {
-        //TODO: add validation
-        this.length = length;
+        this.length = (Integer) LogBlockProperty.BORDER_LENGTH.getValueOrDefault(length);
     }
 
     public void setThickness(int thickness) {
-        //TODO: add validation
-        this.thickness = thickness;
+        this.thickness = (Integer) LogBlockProperty.BORDER_THICKNESS.getValueOrDefault(thickness);
     }
 }

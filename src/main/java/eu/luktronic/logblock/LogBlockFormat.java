@@ -52,25 +52,18 @@ public class LogBlockFormat {
     }
 
     public void setLinePrefix(String linePrefix) {
-        //TODO: add validation
-        this.linePrefix = linePrefix;
+        this.linePrefix = (String) LogBlockProperty.LINE_PREFIX.getValueOrDefault(linePrefix);
     }
 
     public void setPaddingLeft(int paddingLeft) {
-        val isValueValid = LogBlockProperty.PADDING_LEFT.getValidation()
-                .getValidationPredicate()
-                .test(paddingLeft);
-        if(!isValueValid)
-        this.paddingLeft = paddingLeft;
+        this.paddingLeft = (Integer) LogBlockProperty.PADDING_LEFT.getValueOrDefault(paddingLeft);
     }
 
     public void setPaddingTop(int paddingTop) {
-        //TODO: add validation
-        this.paddingTop = paddingTop;
+        this.paddingTop = (Integer) LogBlockProperty.PADDING_TOP.getValueOrDefault(paddingTop);
     }
 
     public void setPaddingBottom(int paddingBottom) {
-        //TODO: add validation
-        this.paddingBottom = paddingBottom;
+        this.paddingBottom = (Integer) LogBlockProperty.PADDING_BOTTOM.getValueOrDefault(paddingBottom);
     }
 }

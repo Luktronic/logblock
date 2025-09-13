@@ -61,7 +61,79 @@ Running this code will result in the following log message:
 
 ## Formatting
 
-LogBlock supports custom formatting
+LogBlock comes with a nice default format for your blocks.
+However, you can customize the formatting on a global level or just temporarily for a single log statement.
+
+<details>
+<summary>Default formatting values</summary>
+
+- Border delimiter: `=`
+- Border length: `80`
+- Border thickness: `1`
+- Line prefix: `|`
+- Padding left: `2`
+- Padding top: `1`
+- Padding bottom: `1`
+
+</details>
+
+### Custom formatting
+
+#### Single-Statement Formatting
+
+You can set the formatting of a single log statement through the use of 
+the fluent API methods provided by your `LogBlock` instance.
+
+This strategy of formatting is only applied for the **next** `LogBlock` log statement.
+After that, the formatting will be reset to the default formatting.
+
+Example:
+```java
+logBlock
+    .withBorderDelimiter("+")
+    .withBorderThickness(2)
+    .withPaddingTop(2)
+    .withPaddingBottom(2)
+    .info("This is my custom formatted log statement!");
+
+logBlock.info("This will have default formatting again!");
+```
+#### Custom default format
+
+LogBlock allows you to overwrite the default format by setting 
+different Java System properties.
+
+> [!TIP]
+> A fully documented list of all the System properties can be 
+> found in the public `LogBlockProperties` class.   
+> It will tell you the name of the system property, what type is expected, 
+> what the default value is, and which validation rules apply.
+> <details>
+> <summary>List of System properties</summary>
+> - `eu.luktronic.logblock.border.delimiter`
+> - `eu.luktronic.logblock.border.length`
+> - `eu.luktronic.logblock.border.thickness`
+> - `eu.luktronic.logblock.line-prefix`
+> - `eu.luktronic.logblock.padding.left`
+> - `eu.luktronic.logblock.padding.top`
+> - `eu.luktronic.logblock.padding.bottom`
+> </details>
+
+```text
+# Default format
+[INFO] MyClass - |================================================================================
+[INFO] MyClass - |
+[INFO] MyClass - |  Hello World from LogBlock!
+[INFO] MyClass - |
+[INFO] MyClass - |================================================================================
+
+# Default format with `eu.luktronic.logblock.border.delimiter=-`
+[INFO] MyClass - |--------------------------------------------------------------------------------
+[INFO] MyClass - |
+[INFO] MyClass - |  Hello World from LogBlock!
+[INFO] MyClass - |
+[INFO] MyClass - |--------------------------------------------------------------------------------
+```
 
 ## Building
 

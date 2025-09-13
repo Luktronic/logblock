@@ -110,6 +110,7 @@ different Java System properties.
 > what the default value is, and which validation rules apply.
 > <details>
 > <summary>List of System properties</summary>
+>
 > - `eu.luktronic.logblock.border.delimiter`
 > - `eu.luktronic.logblock.border.length`
 > - `eu.luktronic.logblock.border.thickness`

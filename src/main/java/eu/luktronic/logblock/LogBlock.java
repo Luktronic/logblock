@@ -81,15 +81,27 @@ public class LogBlock {
         return this;
     }
 
+    /// @see LogBlockProperties#LINE_PREFIX
+    public LogBlock withLinePrefix(String linePrefix) {
+        tempFormat.setLinePrefix(linePrefix);
+        return this;
+    }
+
     /// @see LogBlockProperties#PADDING_LEFT
     public LogBlock withPaddingLeft(int paddingLeft) {
         tempFormat.setPaddingLeft(paddingLeft);
         return this;
     }
 
-    /// @see LogBlockProperties#LINE_PREFIX
-    public LogBlock withLinePrefix(String linePrefix) {
-        tempFormat.setLinePrefix(linePrefix);
+    /// @see LogBlockProperties#PADDING_TOP
+    public LogBlock withPaddingTop(int paddingTop) {
+        tempFormat.setPaddingTop(paddingTop);
+        return this;
+    }
+
+    /// @see LogBlockProperties#PADDING_BOTTOM
+    public LogBlock withPaddingBottom(int paddingBottom) {
+        tempFormat.setPaddingBottom(paddingBottom);
         return this;
     }
 

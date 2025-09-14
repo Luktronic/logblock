@@ -143,11 +143,11 @@ as its build tool (using Gradle wrapper) and requires Java 24 for building.
 
 ## Planned features
 
-- Block borders
-- Block line prefix
-- Top padding
-- Bottom padding
-- Left padding
+- Block borders ✅
+- Block line prefix ✅
+- Top padding ✅
+- Bottom padding ✅
+- Left padding ✅
 
 ### Currently in consideration
 

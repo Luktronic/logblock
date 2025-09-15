@@ -4,10 +4,11 @@ plugins {
     id("java")
     id("io.freefair.lombok") version "8.14.2"
     id("maven-publish")
+    id("signing")
 }
 
 group = "eu.luktronic"
-version = "0.1-5.0"
+version = "0.1.0-1"
 
 java {
     withJavadocJar()
@@ -36,6 +37,29 @@ publishing {
     publications {
         register("mavenJava", MavenPublication::class) {
             from(components["java"])
+
+            pom {
+                name = "LogBlock"
+                description = "A Java SLF4J-based logging wrapper that allows logging fancy blocks of text."
+                url = "https://github.com/Luktronic/logblock"
+                licenses {
+                    license {
+                        name = "The Apache Software License, Version 2.0"
+                        url = "http://www.apache.org/licenses/LICENSE-2.0.txt"
+                    }
+                }
+                developers {
+                    developer {
+                        name = "Luktronic"
+                        email = "luktronic@gmx.at"
+                    }
+                }
+                scm {
+                    connection = "scm:git:git://github.com/Luktronic/logblock.git"
+                    developerConnection = "scm:git:ssh://github.com/Luktronic/logblock.git"
+                    url = "https://github.com/Luktronic/logblock"
+                }
+            }
         }
     }
     repositories {

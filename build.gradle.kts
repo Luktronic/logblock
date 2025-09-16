@@ -67,6 +67,12 @@ publishing {
     }
 }
 
+signing {
+    sign(publishing.publications["mavenJava"])
+
+    useGpgCmd()
+}
+
 tasks.compileJava {
     options.release = 8
 }

@@ -4,7 +4,6 @@ about: Suggest an idea or enhancement for LogBlock.
 title: 'feat: [short and descriptive title]'
 labels: 'feature, triage'
 assignees: ''
-projects: 'Luktronic/2'
 
 ---
 

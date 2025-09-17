@@ -1,7 +1,12 @@
 # LogBlock
 
 > [!NOTE]
-> This project is currently under active development and is therefore not usable yet.
+> LogBlock has just had its `1.0.0` release!
+> 
+> If you encounter any bugs, or simply want to request a new feature/improvement, 
+> please feel free to [open an issue](https://github.com/Luktronic/logblock/issues/new).
+> 
+> If you simply want to ask questions or talk about the project, feel free to head into the [Discussions](https://github.com/Luktronic/logblock/discussions).
 
 LogBlock is an [SLF4J](https://github.com/qos-ch/slf4j)-based utility library that provides an easy way to log 
 beautiful information blocks like this one:

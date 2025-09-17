@@ -1,5 +1,5 @@
 ---
-name: ⬆️ Improvement
+name: ⬆️ Improvement Request
 about: Suggest an improvement to an existing feature or functionality.
 title: 'feat: [short and descriptive title]'
 labels: 'improvement, triage'

@@ -29,6 +29,6 @@ assignees: 'luktronic'
 - **LogBlock Version:** `[e.g., 1.2.3]`
 - **Java Version:** `[e.g., 17]`
 
-## 📝 Additional Context
+## Additional Context
 [//]: # (If you want to add any additional context, such as screenshots, feel free to add it here.)
 [//]: # (If the bug is more complex, you might want to link an example project which reproduces the bug)

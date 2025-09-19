@@ -1,9 +1,11 @@
 import org.gradle.api.tasks.testing.logging.TestLogEvent
+import org.jreleaser.model.Active
 
 plugins {
     id("java")
     id("io.freefair.lombok") version "8.14.2"
     id("maven-publish")
+    id("org.jreleaser") version "1.20.0"
     id("signing")
 }
 
@@ -82,5 +84,30 @@ tasks.test {
 
     testLogging {
         events = setOf(TestLogEvent.PASSED, TestLogEvent.SKIPPED, TestLogEvent.FAILED)
+    }
+}
+
+jreleaser {
+    signing {
+        active = Active.ALWAYS
+        armored = true
+    }
+    release {
+        github {
+            enabled = false
+        }
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                register("sonatype") {
+                    active = Active.ALWAYS
+                    url = "https://central.sonatype.com/api/v1/publisher"
+                    snapshotSupported = true
+                    stagingRepository("build/staging-deploy")
+                    applyMavenCentralRules = true
+                }
+            }
+        }
     }
 }

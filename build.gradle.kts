@@ -94,7 +94,7 @@ jreleaser {
     }
     release {
         github {
-            enabled = false
+            token = "ThisIsNotNeeded"
         }
     }
     deploy {

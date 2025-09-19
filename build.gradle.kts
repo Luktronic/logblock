@@ -43,6 +43,7 @@ publishing {
                 name = "LogBlock"
                 description = "A Java SLF4J-based logging wrapper that allows logging fancy blocks of text."
                 url = "https://github.com/Luktronic/logblock"
+                inceptionYear = "2025"
                 licenses {
                     license {
                         name = "The Apache Software License, Version 2.0"

@@ -1,7 +1,7 @@
 # LogBlock
 
 > [!NOTE]
-> LogBlock has just had its `1.0.0` release!
+> LogBlock has just had its first release on Maven Central with version `1.0.0-rc.1`!
 > 
 > If you encounter any bugs, or simply want to request a new feature/improvement, 
 > please feel free to [open an issue](https://github.com/Luktronic/logblock/issues/new).

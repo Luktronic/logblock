@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "eu.luktronic"
-version = "1.0.0"
+version = "1.0.0-rc.1"
 
 java {
     withJavadocJar()
@@ -65,6 +65,10 @@ publishing {
     }
     repositories {
         mavenLocal()
+        maven {
+            name = "staging"
+            url = layout.buildDirectory.dir("staging-deploy").get().asFile.toURI()
+        }
     }
 }
 

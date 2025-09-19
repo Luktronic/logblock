@@ -6,7 +6,6 @@ plugins {
     id("io.freefair.lombok") version "8.14.2"
     id("maven-publish")
     id("org.jreleaser") version "1.20.0"
-    id("signing")
 }
 
 group = "eu.luktronic"
@@ -67,12 +66,6 @@ publishing {
     repositories {
         mavenLocal()
     }
-}
-
-signing {
-    sign(publishing.publications["mavenJava"])
-
-    useGpgCmd()
 }
 
 tasks.compileJava {

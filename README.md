@@ -64,20 +64,31 @@ Running this code will result in the following log message:
 [INFO] MyClass - |================================================================================
 ```
 
-### Java 15 Text Block support
+### Multiline messages
 
-When using LogBlock in a project with JDK 15 or higher, you can the text block syntax to
-easily print out multi-line log statements!
+LogBlock will parse every `\n` inside of your log message, 
+and treat the new line as a separate log statement.
 
+Example for a multiline log message:
 ```java
 String hello = "Hello";
 String world = "World";
-logBlock.info("""
-        To everyone who reads this,
-        I wish to you a very dear:
-        {} {}!
-        """, hello, world);
+logBlock.info("To everyone who reads this,\n" +
+        "I wish to you a very dear:\n" +
+        "{} {}!", hello, world);
 ```
+
+> [!TIP]
+> When using LogBlock in a project with JDK 15 or higher, you can use the text block syntax to
+> easily print out multi-line log statements!
+> 
+> ```java
+> logBlock.info("""
+>        To everyone who reads this,
+>        I wish to you a very dear:
+>        {} {}!
+>        """, hello, world); 
+> ```
 
 The log message will look like this:
 

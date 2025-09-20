@@ -64,6 +64,33 @@ Running this code will result in the following log message:
 [INFO] MyClass - |================================================================================
 ```
 
+### Java 15 Text Block support
+
+When using LogBlock in a project with JDK 15 or higher, you can the text block syntax to
+easily print out multi-line log statements!
+
+```java
+String hello = "Hello";
+String world = "World";
+logBlock.info("""
+        To everyone who reads this,
+        I wish to you a very dear:
+        {} {}!
+        """, hello, world);
+```
+
+The log message will look like this:
+
+```text
+[INFO] MyClass - |================================================================================
+[INFO] MyClass - |
+[INFO] MyClass - |  To everyone who reads this,
+[INFO] MyClass - |  I wish to you a very dear:
+[INFO] MyClass - |  Hello World!
+[INFO] MyClass - |
+[INFO] MyClass - |================================================================================
+```
+
 ## Formatting
 
 LogBlock comes with a nice default format for your blocks.

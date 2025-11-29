@@ -10,6 +10,9 @@ import java.util.function.BiConsumer;
 ///
 /// This class allows you to print nice-looking blocks of logs using SLF4J.
 ///
+/// These Javadocs will give you a quick overview on how to use *LogBlock*.
+/// For more in-depth documentation, take a look at the [GitHub repository](https://github.com/Luktronic/logblock).
+///
 /// ## How to use
 ///
 /// First, create an instance of this `LogBlock` class using either the constructor or the
@@ -34,6 +37,40 @@ import java.util.function.BiConsumer;
 /// [INFO] MyClass - |
 /// [INFO] MyClass - |================================================================================
 /// ```
+///
+/// ### Multiline messages
+///
+/// LogBlock will parse every `\n` inside of your log message,
+/// and treat the new line as a separate log statement.
+///
+/// Example for a multiline log message:
+/// ```java
+/// String hello = "Hello";
+/// String world = "World";
+/// logBlock.info("To everyone who reads this,\n" +
+///         "I wish to you a very dear:\n" +
+///         "{} {}!", hello, world);
+///
+/// // If using JDK 15+, you can also use a text block for easier formatting!
+/// logBlock.info("""
+///        To everyone who reads this,
+///        I wish to you a very dear:
+///        {} {}!
+///        """, hello, world);
+/// ```
+///
+/// The log message will look like this:
+///
+/// ```text
+/// [INFO] MyClass - |================================================================================
+/// [INFO] MyClass - |
+/// [INFO] MyClass - |  To everyone who reads this,
+/// [INFO] MyClass - |  I wish to you a very dear:
+/// [INFO] MyClass - |  Hello World!
+/// [INFO] MyClass - |
+/// [INFO] MyClass - |================================================================================
+/// ```
+///
 public class LogBlock {
 
     private final Logger log;

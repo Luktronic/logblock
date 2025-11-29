@@ -24,7 +24,7 @@ class LogBlockConfig {
     static class ConfigReader {
 
         public String readBorderDelimiter() {
-            return System.getProperty(LogBlockProperty.BORDER_DELIMITER.getSystemProperty(), (String) LogBlockProperty.BORDER_DELIMITER.getDefaultValue());
+            return getStringProperty(LogBlockProperty.BORDER_DELIMITER);
         }
 
         public int readBorderLength() {
@@ -36,7 +36,7 @@ class LogBlockConfig {
         }
 
         public String readLinePrefix() {
-            return System.getProperty(LogBlockProperty.LINE_PREFIX.getSystemProperty(), (String) LogBlockProperty.LINE_PREFIX.getDefaultValue());
+            return getStringProperty(LogBlockProperty.LINE_PREFIX);
         }
 
         public int readPaddingLeft() {
@@ -67,6 +67,14 @@ class LogBlockConfig {
                 log.warn("Reverting value for '{}' to default '{}' - custom value '{}' could not be parsed to int", key, def, propertyValue);
             }
             return finalValue;
+        }
+
+        private static String getStringProperty(LogBlockProperty logBlockProperty) {
+            val key = logBlockProperty.getSystemProperty();
+            val def = (String) logBlockProperty.getDefaultValue();
+            val property = System.getProperty(key, def);
+
+            return (String) logBlockProperty.getValueOrDefault(property);
         }
     }
 }

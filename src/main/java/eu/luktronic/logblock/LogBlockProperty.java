@@ -15,7 +15,7 @@ enum LogBlockProperty {
     BORDER_DELIMITER(String.class, LogBlockSystemProperties.BORDER_DELIMITER, Validation.NON_BLANK_STRING, "="),
     BORDER_LENGTH(Integer.class, LogBlockSystemProperties.BORDER_LENGTH, Validation.GREATER_THAN_ZERO_INTEGER, 80),
     BORDER_THICKNESS(Integer.class, LogBlockSystemProperties.BORDER_THICKNESS, Validation.GREATER_THAN_ZERO_INTEGER, 1),
-    LINE_PREFIX(String.class, LogBlockSystemProperties.LINE_PREFIX, null, "|"),
+    LINE_PREFIX(String.class, LogBlockSystemProperties.LINE_PREFIX, Validation.NON_BLANK_STRING, "|"),
     PADDING_LEFT(Integer.class, LogBlockSystemProperties.PADDING_LEFT, Validation.POSITIVE_INTEGER, 2),
     PADDING_TOP(Integer.class, LogBlockSystemProperties.PADDING_TOP, Validation.POSITIVE_INTEGER, 1),
     PADDING_BOTTOM(Integer.class, LogBlockSystemProperties.PADDING_BOTTOM, Validation.POSITIVE_INTEGER, 1);

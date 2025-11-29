@@ -53,6 +53,27 @@ class LogBlockConfigTest {
                     assertThat(testedMethod.get()).isEqualTo(getNewValue());
                 }
             }
+
+            @Nested
+            @DisplayName("invalid value")
+            class InvalidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                String getNewValue() {
+                    return "   ";
+                }
+
+                @Test
+                @DisplayName("should fall back to default value")
+                void shouldFallBackToDefaultValue() {
+                    assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
+                }
+            }
         }
     }
 
@@ -231,6 +252,27 @@ class LogBlockConfigTest {
                 @DisplayName("should set delimiter to configured value")
                 void shouldSetToNewValue() {
                     assertThat(testedMethod.get()).isEqualTo(getNewValue());
+                }
+            }
+
+            @Nested
+            @DisplayName("invalid value")
+            class InvalidValue extends AbstractSetPropertyTest {
+
+                @Override
+                String getPropertyKey() {
+                    return property;
+                }
+
+                @Override
+                String getNewValue() {
+                    return "   ";
+                }
+
+                @Test
+                @DisplayName("should fall back to default value")
+                void shouldFallBackToDefaultValue() {
+                    assertThat(testedMethod.get()).isEqualTo(expectedDefaultValue);
                 }
             }
         }
@@ -443,7 +485,7 @@ class LogBlockConfigTest {
 
         @BeforeEach
         void setup() {
-            System.setProperty(getPropertyKey(), getNewValue().toString());
+            System.setProperty(getPropertyKey(), getNewValue() == null ? "null" : getNewValue().toString());
         }
 
         @AfterEach

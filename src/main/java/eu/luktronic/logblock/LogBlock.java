@@ -6,6 +6,38 @@ import org.slf4j.Logger;
 import java.util.Objects;
 import java.util.function.BiConsumer;
 
+/**
+ * Welcome to <b>LogBlock</b>!
+ * <p>
+ * This class allows you to print nice-looking blocks of logs using SLF4J.
+ *
+ * <h2>How to use</h2>
+ *
+ * First, create an instance of this {@code LogBlock} class using either the constructor or the
+ * more fluent-API-like {@link #withLogger(Logger)} method:
+ *
+ * <pre>
+ *     Logger log = LoggerFactory.getLogger(MyClass.class);
+ *     LogBlock logBlock = LogBlock.withLogger(log);
+ *     logBlock = new LogBlock(log); // This is also possible
+ * </pre>
+ *
+ * You can then use the regular log methods that you already know from your SLF4J {@link Logger}:
+ *
+ * <pre>
+ *     logBlock.error("Hello World from LogBlock!");
+ * </pre>
+ *
+ * The following lines will be logged:
+ *
+ * <pre>
+ * [INFO] MyClass - |================================================================================
+ * [INFO] MyClass - |
+ * [INFO] MyClass - |  Hello World from LogBlock!
+ * [INFO] MyClass - |
+ * [INFO] MyClass - |================================================================================
+ * </pre>
+ */
 public class LogBlock {
 
     private final Logger log;

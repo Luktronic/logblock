@@ -15,9 +15,9 @@ public class BorderFormat {
     private int thickness;
 
     public BorderFormat(String delimiter, int length, int thickness) {
-        this.delimiter = delimiter;
-        this.length = length;
-        this.thickness = thickness;
+        setDelimiter(delimiter);
+        setLength(length);
+        setThickness(thickness);
     }
 
     public BorderFormat() {

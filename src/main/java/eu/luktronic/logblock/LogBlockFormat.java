@@ -16,7 +16,7 @@ import java.util.Objects;
 ///
 /// ...and many more!
 @Getter
-class LogBlockFormat {
+public class LogBlockFormat {
 
     private BorderFormat borderFormat;
     private String linePrefix;
@@ -62,5 +62,11 @@ class LogBlockFormat {
 
     public void setPaddingBottom(int paddingBottom) {
         this.paddingBottom = (Integer) LogBlockProperty.PADDING_BOTTOM.getValueOrDefault(paddingBottom);
+    }
+
+    /// @throws NullPointerException If `borderFormat` is `null`
+    public void setBorderFormat(BorderFormat borderFormat) {
+        Objects.requireNonNull(borderFormat, "Received null borderFormat in LogBlockFormat.setBorderFormat!");
+        this.borderFormat = borderFormat;
     }
 }

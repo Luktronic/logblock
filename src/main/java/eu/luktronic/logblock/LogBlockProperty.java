@@ -12,7 +12,7 @@ import java.util.function.Predicate;
 @Slf4j
 enum LogBlockProperty {
 
-    BORDER_DELIMITER(String.class, LogBlockSystemProperties.BORDER_DELIMITER, null, "="),
+    BORDER_DELIMITER(String.class, LogBlockSystemProperties.BORDER_DELIMITER, Validation.NON_BLANK_STRING, "="),
     BORDER_LENGTH(Integer.class, LogBlockSystemProperties.BORDER_LENGTH, Validation.GREATER_THAN_ZERO_INTEGER, 80),
     BORDER_THICKNESS(Integer.class, LogBlockSystemProperties.BORDER_THICKNESS, Validation.GREATER_THAN_ZERO_INTEGER, 1),
     LINE_PREFIX(String.class, LogBlockSystemProperties.LINE_PREFIX, null, "|"),
@@ -62,6 +62,7 @@ enum LogBlockProperty {
     /// as well as a [Predicate] which will perform the actual validation check.
     @Getter
     enum Validation {
+        NON_BLANK_STRING("Must be a non-blank String", (s) -> s != null && !((String) s).trim().isEmpty()),
         GREATER_THAN_ZERO_INTEGER("Must be greater than 0 integer", (x) -> (Integer) x > 0),
         POSITIVE_INTEGER("Must be positive (>=0) integer", (x) -> (Integer) x >= 0),
         ;
